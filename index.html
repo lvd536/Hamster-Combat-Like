@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://telegram.org/js/telegram-web-app.js?59"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/environment.js"></script>
+    <script src="js/database.js" type="module"></script>
+    <script src="js/clicker.js" type="module"></script>
+    <script src="js/shop.js" type="module"></script>
+<!--    <script src="js/telegramEmulator.js"></script>-->
+    <script src="js/script.js" type="module"></script>
+    <title>Shovel Coin Reborn</title>
+</head>
+<body>
+    <section class="main">
+        <div class="container">
+            <div class="main__heading">
+                <h2 class="main__heading-logo">Shovel Coin</h2>
+                <div class="main__heading-username">
+                    <div class="username__icon-bg">
+                        <img src="./img/logo.png" alt="" class="username__icon-img">
+                    </div>
+                    <h3 class="username__text">loading...</h3>
+                </div>
+            </div>
+            <div class="main__body">
+                <ul class="main__body-info">
+                    <li class="info__item">
+                        <h3 class="info__item-name" style="color: #f79841;">Earn per tap</h3>
+                        <div class="info__item-desc">
+                            <img src="./img/coin.png" alt="" class="info__item-image">
+                            <h2 class="info__item-value" id="coinPerTap">+1</h2>
+                        </div>
+                    </li>
+                    <li class="info__item" style="margin: 0 15px 0 15px; width: 150px;">
+                        <div class="stats__ranking">
+                            <span class="stats__ranking-rank">Elite</span>
+                            <div class="stats__ranking-bar">
+                                <div class="stats__ranking-filled-bar"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="info__item">
+                        <h3 class="info__item-name" style="color: #6f72e2;">Coins to level up</h3>
+                        <h2 class="info__item-value" id="coinToLevelUp">1k</h2>
+                    </li>
+                </ul>
+                <div class="main__body-stats">
+                    <div class="stats__value">
+                        <img src="./img/coin.png" alt="" class="stats__image" style="margin-right: 10px; width: 35px;height: 35px;">
+                        <h2 class="stats__value-text">0</h2>
+                    </div>
+                </div>
+                <div class="main__body-clicker">
+                    <img src="./img/hamster.png" alt="" class="clicker__image" style="width: 253px;height: 254px;">
+                </div>
+                <nav class="navigation">
+                    <ul class="navigation__list" style="display: flex;">
+                        <li class="navigation__item active">
+                            <img src="./img/mine.svg" alt="" class="navigation__item-icon">
+                            <h3 class="navigation__item-name">Mine</h3>
+                        </li>
+                        <li class="navigation__item">
+                            <img src="./img/earn.svg" alt="" class="navigation__item-icon">
+                            <h3 class="navigation__item-name">Earn</h3>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="loading__screen" data-js-loading-screen-main>
+            <h1 class="loading__screen-title">Shovel coin</h1>
+            <div class="loading__screen-circle"></div>
+            <span class="loading__screen-description">Loading...</span>
+        </div>
+    </section>
+</body>
+</html>

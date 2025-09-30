@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="492065bf-5891-4b15-973c-105181611428" name="Changes" comment="del node.js trash">
+      <change afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shavelDeploy.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_revert_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_revert_[Changes]1/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_revert__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_revert__Changes_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/reset.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/coin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/earn.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/hamster.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/memeCoins.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/mine.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/topFarmers.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/x10.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/clicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/database.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/environment.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/mixitup.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/shop.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/telegramEmulator.js" afterDir="false" />
+    </list>
+    <list id="4ed43f81-d317-416a-be5b-d891daac6a0b" name="DONT COMMIT" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;lvd536&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/lvd536/shovelCoinDev.git&quot;,
+    &quot;accountId&quot;: &quot;02c7fdbc-e2fe-4e88-9bff-e7ee4661311b&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="33Bz4l1quHY9MpEecQJjTMa0udk" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2025.2.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-9c94529fcfe0-JavaScript-WS-252.26199.162" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="492065bf-5891-4b15-973c-105181611428" name="Changes" comment="" />
+      <changelist id="4ed43f81-d317-416a-be5b-d891daac6a0b" name="DONT COMMIT" comment="" />
+      <created>1758805063131</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1758805063131</updated>
+      <workItem from="1758805064157" duration="21141000" />
+      <workItem from="1758887758471" duration="22388000" />
+      <workItem from="1758919142858" duration="598000" />
+      <workItem from="1758966654822" duration="7053000" />
+      <workItem from="1759083604283" duration="7072000" />
+      <workItem from="1759177035474" duration="6322000" />
+      <workItem from="1759263552568" duration="723000" />
+      <workItem from="1759264291337" duration="2521000" />
+    </task>
+    <task id="LOCAL-00040" summary="test fix 3.0">
+      <option name="closed" value="true" />
+      <created>1758905242568</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1758905242568</updated>
+    </task>
+    <task id="LOCAL-00041" summary="test build">
+      <option name="closed" value="true" />
+      <created>1758906151652</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1758906151652</updated>
+    </task>
+    <task id="LOCAL-00042" summary="test build 2.0">
+      <option name="closed" value="true" />
+      <created>1758906220573</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1758906220573</updated>
+    </task>
+    <task id="LOCAL-00043" summary="test build 3.0">
+      <option name="closed" value="true" />
+      <created>1758906484015</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1758906484015</updated>
+    </task>
+    <task id="LOCAL-00044" summary="test build 4.0">
+      <option name="closed" value="true" />
+      <created>1758906854076</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1758906854076</updated>
+    </task>
+    <task id="LOCAL-00045" summary="test build 5.0">
+      <option name="closed" value="true" />
+      <created>1758907112699</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1758907112699</updated>
+    </task>
+    <task id="LOCAL-00046" summary="test build 6.0">
+      <option name="closed" value="true" />
+      <created>1758907189744</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1758907189744</updated>
+    </task>
+    <task id="LOCAL-00047" summary="finally fixx!!!">
+      <option name="closed" value="true" />
+      <created>1758907284534</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1758907284534</updated>
+    </task>
+    <task id="LOCAL-00048" summary="test button fix 1.0">
+      <option name="closed" value="true" />
+      <created>1758907521389</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1758907521389</updated>
+    </task>
+    <task id="LOCAL-00049" summary="test button fix 2.0">
+      <option name="closed" value="true" />
+      <created>1758907597183</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1758907597183</updated>
+    </task>
+    <task id="LOCAL-00050" summary="test button fix 3.0">
+      <option name="closed" value="true" />
+      <created>1758907910728</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1758907910729</updated>
+    </task>
+    <task id="LOCAL-00051" summary="test button fix 4.0">
+      <option name="closed" value="true" />
+      <created>1758908832983</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1758908832983</updated>
+    </task>
+    <task id="LOCAL-00052" summary="test button fix 5.0">
+      <option name="closed" value="true" />
+      <created>1758909267923</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1758909267923</updated>
+    </task>
+    <task id="LOCAL-00053" summary="test button fix 6.0">
+      <option name="closed" value="true" />
+      <created>1758909371252</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1758909371252</updated>
+    </task>
+    <task id="LOCAL-00054" summary="test button fix 7.0">
+      <option name="closed" value="true" />
+      <created>1758910124908</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1758910124908</updated>
+    </task>
+    <task id="LOCAL-00055" summary="test button fix 8.0">
+      <option name="closed" value="true" />
+      <created>1758910292117</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1758910292117</updated>
+    </task>
+    <task id="LOCAL-00056" summary="debug 1.0">
+      <option name="closed" value="true" />
+      <created>1758910973767</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1758910973767</updated>
+    </task>
+    <task id="LOCAL-00057" summary="debug 2.0">
+      <option name="closed" value="true" />
+      <created>1758911070604</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1758911070604</updated>
+    </task>
+    <task id="LOCAL-00058" summary="semi-fix shop">
+      <option name="closed" value="true" />
+      <created>1758912966439</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1758912966439</updated>
+    </task>
+    <task id="LOCAL-00059" summary="semi-fix shop 2.0">
+      <option name="closed" value="true" />
+      <created>1758913552485</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1758913552485</updated>
+    </task>
+    <task id="LOCAL-00060" summary="maybee fix shop">
+      <option name="closed" value="true" />
+      <created>1758913947667</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1758913947667</updated>
+    </task>
+    <task id="LOCAL-00061" summary="beta shop implementation">
+      <option name="closed" value="true" />
+      <created>1758914157323</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1758914157323</updated>
+    </task>
+    <task id="LOCAL-00062" summary="fixed clickMultiplier in clicker.js">
+      <option name="closed" value="true" />
+      <created>1758915090576</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1758915090576</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Add loading screen">
+      <option name="closed" value="true" />
+      <created>1758917116455</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1758917116455</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Remove rounding in body &amp;&amp; main">
+      <option name="closed" value="true" />
+      <created>1758917175127</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1758917175127</updated>
+    </task>
+    <task id="LOCAL-00065" summary="test fix game stop">
+      <option name="closed" value="true" />
+      <created>1758917535401</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1758917535401</updated>
+    </task>
+    <task id="LOCAL-00066" summary="fix loading screen issue">
+      <option name="closed" value="true" />
+      <created>1758917698492</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1758917698492</updated>
+    </task>
+    <task id="LOCAL-00067" summary="change animation duration">
+      <option name="closed" value="true" />
+      <created>1758917895740</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1758917895740</updated>
+    </task>
+    <task id="LOCAL-00068" summary="for some tome del click anim">
+      <option name="closed" value="true" />
+      <created>1758918287891</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1758918287891</updated>
+    </task>
+    <task id="LOCAL-00069" summary="del &quot;k&quot; into profit">
+      <option name="closed" value="true" />
+      <created>1758918422257</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1758918422258</updated>
+    </task>
+    <task id="LOCAL-00070" summary="Add loading screen in shop.js">
+      <option name="closed" value="true" />
+      <created>1758967775791</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1758967775791</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Simple refactoring &amp;&amp; test click anim">
+      <option name="closed" value="true" />
+      <created>1758968356778</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1758968356779</updated>
+    </task>
+    <task id="LOCAL-00072" summary="Code refactoring, clicker.js shop.js click logic in function">
+      <option name="closed" value="true" />
+      <created>1758969032661</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1758969032661</updated>
+    </task>
+    <task id="LOCAL-00073" summary="Fix brain issue in shop.js and clicker.js">
+      <option name="closed" value="true" />
+      <created>1758969243722</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1758969243722</updated>
+    </task>
+    <task id="LOCAL-00074" summary="Add rounding to main__body">
+      <option name="closed" value="true" />
+      <created>1758969543933</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1758969543933</updated>
+    </task>
+    <task id="LOCAL-00075" summary="Edit rounding to main__body. Only top">
+      <option name="closed" value="true" />
+      <created>1758970146804</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1758970146805</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Fix price in shop">
+      <option name="closed" value="true" />
+      <created>1758970241689</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1758970241689</updated>
+    </task>
+    <task id="LOCAL-00077" summary="test update shop optimization">
+      <option name="closed" value="true" />
+      <created>1758979969997</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1758979969997</updated>
+    </task>
+    <task id="LOCAL-00078" summary="Del loading upgrades screen, optimize upgrades">
+      <option name="closed" value="true" />
+      <created>1759084418956</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1759084418956</updated>
+    </task>
+    <task id="LOCAL-00079" summary="Add README.md">
+      <option name="closed" value="true" />
+      <created>1759085893022</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1759085893022</updated>
+    </task>
+    <task id="LOCAL-00080" summary="Implemented rank system, add web app emulator">
+      <option name="closed" value="true" />
+      <created>1759182424506</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1759182424506</updated>
+    </task>
+    <task id="LOCAL-00081" summary="fix counter lags, fix margins in info__item">
+      <option name="closed" value="true" />
+      <created>1759182884629</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1759182884629</updated>
+    </task>
+    <task id="LOCAL-00082" summary="Add dotenv, integrate dotenv with database.js">
+      <option name="closed" value="true" />
+      <created>1759264611390</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1759264611391</updated>
+    </task>
+    <task id="LOCAL-00083" summary="Delete fucking node js for test">
+      <option name="closed" value="true" />
+      <created>1759265656989</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1759265656989</updated>
+    </task>
+    <task id="LOCAL-00084" summary="comment emulator">
+      <option name="closed" value="true" />
+      <created>1759265681932</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1759265681932</updated>
+    </task>
+    <task id="LOCAL-00085" summary="Add environment.js">
+      <option name="closed" value="true" />
+      <created>1759266193973</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1759266193973</updated>
+    </task>
+    <task id="LOCAL-00086" summary="Edit README.md">
+      <option name="closed" value="true" />
+      <created>1759266370929</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1759266370929</updated>
+    </task>
+    <task id="LOCAL-00087" summary="Edit index.html">
+      <option name="closed" value="true" />
+      <created>1759266387537</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1759266387537</updated>
+    </task>
+    <task id="LOCAL-00088" summary="del node.js trash">
+      <option name="closed" value="true" />
+      <created>1759266450554</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1759266450556</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Remove rounding in body &amp;&amp; main" />
+    <MESSAGE value="test fix game stop" />
+    <MESSAGE value="fix loading screen issue" />
+    <MESSAGE value="change animation duration" />
+    <MESSAGE value="for some tome del click anim" />
+    <MESSAGE value="del &quot;k&quot; into profit" />
+    <MESSAGE value="Add loading screen in shop.js" />
+    <MESSAGE value="Simple refactoring &amp;&amp; test click anim" />
+    <MESSAGE value="Code refactoring, clicker.js shop.js click logic in function" />
+    <MESSAGE value="Fix brain issue in shop.js and clicker.js" />
+    <MESSAGE value="Add rounding to main__body" />
+    <MESSAGE value="Edit rounding to main__body. Only top" />
+    <MESSAGE value="Fix price in shop" />
+    <MESSAGE value="test update shop optimization" />
+    <MESSAGE value="Del loading upgrades screen, optimize upgrades" />
+    <MESSAGE value="Add README.md" />
+    <MESSAGE value="Implemented rank system, add web app emulator" />
+    <MESSAGE value="fix counter lags, fix margins in info__item" />
+    <MESSAGE value="Add dotenv, integrate dotenv with database.js" />
+    <MESSAGE value="Delete fucking node js for test" />
+    <MESSAGE value="comment emulator" />
+    <MESSAGE value="Add environment.js" />
+    <MESSAGE value="Edit README.md" />
+    <MESSAGE value="Edit index.html" />
+    <MESSAGE value="del node.js trash" />
+    <option name="LAST_COMMIT_MESSAGE" value="del node.js trash" />
+  </component>
+</project>

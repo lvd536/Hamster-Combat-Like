@@ -1,0 +1,15 @@
+Index: .env
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>DB_URL=YOUR_URL\r\nDB_KEY=YOUR_KEY
+===================================================================
+diff --git a/.env b/.env
+--- a/.env	(revision 961f237fc273b9631636e9ddcc57c7203c0be77d)
++++ b/.env	(date 1759264634328)
+@@ -1,2 +1,2 @@
+-DB_URL=YOUR_URL
+-DB_KEY=YOUR_KEY
+\ No newline at end of file
++DB_URL=https://cjnxdzhtpcqwekcopota.supabase.co
++DB_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNqbnhkemh0cGNxd2VrY29wb3RhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg3OTcyNzUsImV4cCI6MjA3NDM3MzI3NX0.86aCbNNejXuFbe-mFr9Cunr8AAaFYpp7-HtLrLaMmKc
+\ No newline at end of file
