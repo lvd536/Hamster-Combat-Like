@@ -10,10 +10,14 @@ export const initTop = async () => {
         let topItemsElement = ``
         for (let i = 0; i < topUsers.length; i++) {
             const crownElement = i === 0 ? `<i class="material-icons crown-gold">emoji_events</i>`
-                : i === 1 ? `<i class="material-icons crown-gold">emoji_events</i>`
-                    : i === 2 ? `<i class="material-icons crown-gold">emoji_events</i>`
+                : i === 1 ? `<i class="material-icons crown-silver">emoji_events</i>`
+                    : i === 2 ? `<i class="material-icons crown-bronze">emoji_events</i>`
                         : ``
-            topItemsElement += `<li class="top__item border-gold">
+            const borderElement = i === 0 ? `top__item border-gold`
+                : i === 1 ? `top__item border-silver`
+                    : i === 2 ? `top__item border-bronze`
+                        : ``
+            topItemsElement += `<li class="top__item ${borderElement}">
                             <div class="top__info">
                                 <div class="top__position">
                                     <span class="top__number">${i+1}</span>
