@@ -61,12 +61,14 @@ export const initShop = async (telegramID) => {
     navElements[0].addEventListener('click', () => {
         navElements[0].classList.toggle('active', true)
         navElements[1].classList.toggle('active', false)
+        navElements[2].classList.toggle('active', false)
         document.querySelector('.main__body-clicker').innerHTML = clickerElement
         setEventListener()
     })
     navElements[1].addEventListener('click', () => {
         navElements[1].classList.toggle('active', true)
         navElements[0].classList.toggle('active', false)
+        navElements[2].classList.toggle('active', false)
         document.querySelector('.main__body-clicker').innerHTML = `<ul class="shop__items">
                         <li class="shop__item">
                             <div class="shop__item-info">

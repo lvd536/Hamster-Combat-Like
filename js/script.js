@@ -1,6 +1,7 @@
 import * as supabase from './database.js'
 import { getBalanceInfo } from './clicker.js'
 import { initShop } from './shop.js'
+import { initTop } from './top.js'
 
 const tg = window.Telegram.WebApp
 const loadingElement = document.querySelector('[data-js-loading-screen-main]')
@@ -17,6 +18,7 @@ const validUserCheck = setInterval( async () => {
         id = tg.initDataUnsafe.user.id
         tg.expand()
         await initShop(id)
+        await initTop()
         setInterval( async () => {
             const balanceInfo = getBalanceInfo()
             await supabase.syncBalance(balanceInfo, id)

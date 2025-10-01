@@ -30,11 +30,18 @@ export const getUser = async (tg, telegramID) => {
             .from('Users')
             .select('*')
             .eq('telegramID', telegramID)
-            .single()
+            .maybeSingle()
 
         if (error) throw error
 
-        if (data) {
+        if (data === null) {
+            const { username, id } = tg.initDataUnsafe.user
+            await createUser(username, id)
+            setUIUsername(username)
+            setUIBalance(1)
+            await initClicker(1, 1)
+        }
+        else {
             const {balance, balanceEarned, username, rank} = data
             setUIUsername(username)
             setUIBalance(balance)
@@ -43,11 +50,6 @@ export const getUser = async (tg, telegramID) => {
         }
     } catch (error) {
         console.log('Ошибка в получении пользователя: ', error)
-        const { username, id } = tg.initDataUnsafe.user
-        await createUser(username, id)
-        setUIUsername(username)
-        setUIBalance(1)
-        initClicker(1, 1)
     }
 }
 
@@ -64,23 +66,6 @@ export const getUserUpgrades = async (telegramID) => {
         return data
     } catch (error) {
         console.log('Ошибка в получении апгрейдов: ', error)
-        throw error
-    }
-}
-
-export const getUserRank = async (telegramID) => {
-    try {
-        const {data, error} = await supabase
-            .from('Users')
-            .select('rank')
-            .eq('telegramID', telegramID)
-            .single()
-
-        if (error) throw error
-        
-        return data
-    } catch (error) {
-        console.log('Ошибка в получении ранга: ', error)
         throw error
     }
 }
@@ -144,23 +129,18 @@ export const setUserBalance = async (newBalance, newBalanceEarned, telegramID) =
     }
 }
 
-export const setUserName = async (newUsername, telegramID) => {
+export const getUsersTop = async () => {
     try {
         const { data, error } = await supabase
             .from('Users')
-            .update({
-                    username: newUsername,
-                },
-                {
-                    returning: 'presentation'
-                })
-            .match({ telegramID: telegramID })
+            .select()
+            .order('balanceEarned', { ascending: false })
+            .limit(5)
 
         if (error) throw error
-
         return data
     } catch (error) {
-        console.log('Ошибка в установлении username: ', error)
+        console.log('Ошибка в получении топа: ', error)
         return undefined
     }
 }
