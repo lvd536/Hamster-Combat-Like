@@ -1,11 +1,17 @@
 import { setUIBalance, setUserRank } from './database.js'
 
+// balance vars
 let balance = 0
 let balanceEarned = 0
+// earnings vars
 let clickMultiplier = 1
+let autoClick = 0
+let passiveEarn = 0
+// other vars
 let currentRank = {}
 let isInitialized = false
 let userID = 0
+let autoClickInterval = undefined
 
 const rankList = [
     {
@@ -88,14 +94,18 @@ export const initClicker = async (userBalance, userBalanceEarned, rank, telegram
 
 export const setEventListener = () => {
     const button = document.querySelector('.clicker__image')
-    button.addEventListener('click', async () => await onClick(button))
+    button.addEventListener('click', async (event) => await onClick(event, button))
 }
 
-const onClick = async (buttonElement) => {
-    buttonElement.classList.add('clicked');
+const onClick = async (event, buttonElement) => {
+    addClickAmountUI(event)
+    const rect = buttonElement.getBoundingClientRect()
+    const x = event.clientX - rect.left - rect.width / 2;
+    const y = event.clientY - rect.top - rect.height / 2;
+    buttonElement.style.transform = `perspective(1000px) rotateX(${-y / 10}deg) rotateY(${x / 10}deg)`
     setTimeout(async () => {
-        buttonElement.classList.remove('clicked')
-    }, 200)
+        buttonElement.style.transform = ``
+    }, 100)
     balance += clickMultiplier
     balanceEarned += clickMultiplier
     setUIBalance(balance)
@@ -105,9 +115,24 @@ const onClick = async (buttonElement) => {
 
 export const setClickerMultiplier = (upgrades) => {
     clickMultiplier = 1
+    autoClick = 0
+    passiveEarn = 0
     for (const item in upgrades) {
-        if (upgrades[item].isBought) clickMultiplier += upgrades[item].profit
+        if (upgrades[item].isBought) {
+            switch (upgrades[item].type) {
+                case 'multiplier':
+                    clickMultiplier += upgrades[item].profit
+                    break
+                case 'auto':
+                    autoClick += upgrades[item].profit
+                    break
+                case 'passive':
+                    passiveEarn += upgrades[item].profit
+                    break
+            }
+        }
     }
+    setClickerInterval()
     document.querySelector('#coinPerTap').textContent = `+${clickMultiplier}`
 }
 
@@ -122,7 +147,7 @@ export const setBalance = (newBalance) => {
     setUIBalance(balance)
 }
 
-const getNextRank = (currentRank = 'newbie') => {
+const getNextRank = () => {
     let nextObj = rankList.find(rank => rank.coinsToReach >= balanceEarned)
     if (!nextObj) nextObj = rankList[rankList.length - 1];
     return nextObj
@@ -139,14 +164,14 @@ const calculateUserRank = async (currentRank = 'newbie', telegramID) => {
 }
 
 const increaseUserRank = async () => {
-    const newRank = getNextRank(currentRank)
+    const newRank = getNextRank()
     await setUserRank(newRank.name, userID)
     await initializeUserRank(newRank.name, userID)
 }
 
-const updateRankBar = (userRankObj) => {
+const updateRankBar = () => {
     const rankBarElement = document.querySelector('.stats__ranking-filled-bar')
-    const nextRankObj = getNextRank(userRankObj.name)
+    const nextRankObj = getNextRank()
     const rankReachPercent = (balanceEarned / nextRankObj.coinsToReach) * 100
     rankBarElement.style.width = `${rankReachPercent}%`
 }
@@ -163,4 +188,29 @@ const initializeUserRank = async (rank = 'newbie', telegramID) => {
     coinsToReachElement.textContent = nextRankObj.coinsToReachUI
     currentRankElement.textContent = userRankObj.name
     currentRank = userRankObj
+}
+
+const addClickAmountUI = (event) => {
+    const amountElement = document.createElement(`div`)
+    amountElement.classList.add('click_amount')
+    amountElement.innerText = clickMultiplier
+    const clicker = document.querySelector('.main__body-clicker')
+    const rect = clicker.getBoundingClientRect()
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    amountElement.style.top = y + 'px'
+    amountElement.style.left = x + 'px'
+    const amountCreatedElement = clicker.insertAdjacentElement('afterbegin', amountElement)
+    setTimeout(() => {
+        amountCreatedElement.remove()
+    }, 500)
+}
+
+const setClickerInterval = () => {
+    clearInterval(autoClickInterval)
+    autoClickInterval = setInterval(async () => {
+        balance += autoClick
+        balanceEarned += autoClick
+        setUIBalance(balance)
+    }, 1000)
 }

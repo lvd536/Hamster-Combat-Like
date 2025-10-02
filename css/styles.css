@@ -126,10 +126,6 @@ html, body {
     color: #fffefd;
 }
 
-.clicker__image.clicked {
-    animation: pulse .2s ease-out;
-}
-
 .shop__items {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -138,7 +134,7 @@ html, body {
 }
 .shop__item {
     border-radius: 15px;
-    width: 180px;
+    width: 165px;
     height: 107px;
     background: #32363c;
 }
@@ -387,7 +383,7 @@ html, body {
 }
 .stats__ranking-bar {
     display: flex;
-    width: 90%;
+    width: 80%;
     height: 10px;
     border: 1px solid rgba(85, 85, 85, 0.75);
     border-radius: 5px;
@@ -396,16 +392,39 @@ html, body {
     background: #32363c;
 }
 .stats__ranking-filled-bar {
-    width: 90%;
+    width: 100%;
     height: 8px;
     border-radius: 5px;
     background: linear-gradient(90deg, #adfaa1 0%, #c597cc 45%, #2f39a3 100%);
 }
 
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(.9); }
-    100% { transform: scale(1); }
+.click_amount {
+    position: absolute;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 24px;
+    animation: counter 0.5s;
+    z-index: 999;
+    opacity: 0;
+    color: #fff;
+}
+.sort__buttons {
+    font-family: var(--font-family);
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+.sort__button {
+    font-size: 12px;
+    font-weight: 400;
+    width: 100px;
+    height: 30px;
+    border: 1px solid #535353;
+    box-shadow: 2px 2px 2px #535353;
+    border-radius: 2px;
+    background: #32363c;
+    color: #e8e0e0;
 }
 
 @keyframes circle-pulse {
@@ -417,5 +436,19 @@ html, body {
     75% { transform: scale(1.4) rotateZ(270deg); }
     100% {
         transform: scale(1) rotateZ(360deg);
+    }
+}
+
+@keyframes counter {
+    0% {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.75;
+    }
+    100% {
+        transform: translateY(-300%);
+        opacity: 0;
     }
 }

@@ -53,23 +53,6 @@ export const getUser = async (tg, telegramID) => {
     }
 }
 
-export const getUserUpgrades = async (telegramID) => {
-    try {
-        const {data, error} = await supabase
-            .from('Users')
-            .select('upgrades')
-            .eq('telegramID', telegramID)
-            .single()
-
-        if (error) throw error
-
-        return data
-    } catch (error) {
-        console.log('Ошибка в получении апгрейдов: ', error)
-        throw error
-    }
-}
-
 export const setUserRank = async (rank, telegramID) => {
     try {
         const {data, error} = await supabase
@@ -91,11 +74,31 @@ export const setUserRank = async (rank, telegramID) => {
     }
 }
 
-export const setUserUpgrades = async (upgrades, telegramID) => {
+export const getUserUpgrades = async (telegramID) => {
     try {
         const {data, error} = await supabase
             .from('Users')
-            .update({ upgrades: upgrades }) // Передаем новый объект целиком
+            .select('upgrades, upgradesConfigVersion')
+            .eq('telegramID', telegramID)
+            .single()
+
+        if (error) throw error
+
+        return data
+    } catch (error) {
+        console.log('Ошибка в получении апгрейдов: ', error)
+        throw error
+    }
+}
+
+export const setUserUpgrades = async (upgrades, configVersion, telegramID) => {
+    try {
+        const {data, error} = await supabase
+            .from('Users')
+            .update({
+                upgrades: upgrades,
+                upgradesConfigVersion: configVersion
+            })
             .eq('telegramID', telegramID);
 
         if (error) throw error

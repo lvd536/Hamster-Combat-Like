@@ -1,55 +1,11 @@
-import {setEventListener, setClickerMultiplier, getBalanceInfo, setBalance} from "./clicker.js";
+import {setEventListener, setClickerMultiplier, getBalanceInfo, setBalance} from "./clicker.js"
 import {setUserUpgrades, getUserUpgrades} from "./database.js"
+import {UPGRADES_CONFIG, UPGRADES_CONFIG_VERSION} from './upgradesConfig.js'
 
-let upgrades = {
-    topFarmers: {
-        name: 'Тоp 10 farmers',
-        image: './img/x10.svg',
-        profit: 1,
-        price: 500,
-        level: 1,
-        maxLevel: 20,
-        increaseClickPerLevel: 1,
-        increasePricePerLevel: 3,
-        isBought: false,
-    },
-    memeCoins: {
-        name: 'Meme coins',
-        image: './img/memeCoins.png',
-        profit: 2,
-        price: 1500,
-        level: 1,
-        maxLevel: 20,
-        increaseClickPerLevel: 2,
-        increasePricePerLevel: 4,
-        isBought: false,
-    },
-    marginX10: {
-        name: 'Margin trading x10',
-        image: './img/x10.svg',
-        profit: 3,
-        price: 5000,
-        level: 1,
-        maxLevel: 30,
-        increaseClickPerLevel: 3,
-        increasePricePerLevel: 5,
-        isBought: false,
-    },
-    marginX20: {
-        name: 'Margin trading x20',
-        image: './img/x10.svg',
-        profit: 5,
-        price: 15000,
-        level: 1,
-        maxLevel: 40,
-        increaseClickPerLevel: 4,
-        increasePricePerLevel: 6,
-        isBought: false,
-    },
-}
 let tgID = ''
-
-const clickerElement = `<img src="./img/hamster.png" alt="" class="clicker__image" style="width: 253px;height: 254px;">`
+let upgrades = {}
+let upgradesConfigVersion = 0
+const clickerElement = `<img src="./img/hamster.png" alt="" class="clicker__image" style="width: 253px; height: 254px">`
 
 export const initShop = async (telegramID) => {
     tgID = telegramID
@@ -69,88 +25,46 @@ export const initShop = async (telegramID) => {
         navElements[1].classList.toggle('active', true)
         navElements[0].classList.toggle('active', false)
         navElements[2].classList.toggle('active', false)
-        document.querySelector('.main__body-clicker').innerHTML = `<ul class="shop__items">
-                        <li class="shop__item">
-                            <div class="shop__item-info">
-                                <img src="${upgrades.topFarmers.image}" alt="" class="shop__item-image">
-                                <div class="shop__item-pricing">
-                                    <span class="shop__item-name">${upgrades.topFarmers.name}</span>
-                                    <span class="shop__item-profit-label">Profit per click</span>
-                                    <span class="shop__item-profit">
-                                            <img src="./img/coin.png" alt="" class="profit__image">
-                                            <span class="profit__value">${upgrades.topFarmers.profit}</span>
-                                        </span>
-                                </div>
-                            </div>
-                            <div class="shop__item-details">
-                                <span class="shop__item-level">lvl ${upgrades.topFarmers.level}</span>
-                                <span class="shop__item-price">
-                                        <img src="./img/coin.png" alt="" class="price__image">
-                                        <span class="price__value">${upgrades.topFarmers.price}</span>
-                                    </span>
-                            </div>
-                        </li>
-                        <li class="shop__item">
-                            <div class="shop__item-info">
-                                <img src="${upgrades.memeCoins.image}" alt="" class="shop__item-image">
-                                <div class="shop__item-pricing">
-                                    <span class="shop__item-name">${upgrades.memeCoins.name}</span>
-                                    <span class="shop__item-profit-label">Profit per click</span>
-                                    <span class="shop__item-profit">
-                                            <img src="./img/coin.png" alt="" class="profit__image">
-                                            <span class="profit__value">${upgrades.memeCoins.profit}</span>
-                                        </span>
-                                </div>
-                            </div>
-                            <div class="shop__item-details">
-                                <span class="shop__item-level">lvl ${upgrades.memeCoins.level}</span>
-                                <span class="shop__item-price">
-                                        <img src="./img/coin.png" alt="" class="price__image">
-                                        <span class="price__value">${upgrades.memeCoins.price}</span>
-                                    </span>
-                            </div>
-                        </li>
-                        <li class="shop__item">
-                            <div class="shop__item-info">
-                                <img src="${upgrades.marginX10.image}" alt="" class="shop__item-image">
-                                <div class="shop__item-pricing">
-                                    <span class="shop__item-name">${upgrades.marginX10.name}</span>
-                                    <span class="shop__item-profit-label">Profit per click</span>
-                                    <span class="shop__item-profit">
-                                            <img src="./img/coin.png" alt="" class="profit__image">
-                                            <span class="profit__value">${upgrades.marginX10.profit}</span>
-                                        </span>
-                                </div>
-                            </div>
-                            <div class="shop__item-details">
-                                <span class="shop__item-level">lvl ${upgrades.marginX10.level}</span>
-                                <span class="shop__item-price">
-                                        <img src="./img/coin.png" alt="" class="price__image">
-                                        <span class="price__value">${upgrades.marginX10.price}</span>
-                                    </span>
-                            </div>
-                        </li>
-                        <li class="shop__item">
-                            <div class="shop__item-info">
-                                <img src="${upgrades.marginX20.image}" alt="" class="shop__item-image">
-                                <div class="shop__item-pricing">
-                                    <span class="shop__item-name">${upgrades.marginX20.name}</span>
-                                    <span class="shop__item-profit-label">Profit per click</span>
-                                    <span class="shop__item-profit">
-                                            <img src="./img/coin.png" alt="" class="profit__image">
-                                            <span class="profit__value">${upgrades.marginX20.profit}</span>
-                                        </span>
-                                </div>
-                            </div>
-                            <div class="shop__item-details">
-                                <span class="shop__item-level">lvl ${upgrades.marginX20.level}</span>
-                                <span class="shop__item-price">
-                                        <img src="./img/coin.png" alt="" class="price__image">
-                                        <span class="price__value">${upgrades.marginX20.price}</span>
-                                    </span>
-                            </div>
-                        </li>
-                    </ul>`
+
+        const shopItemsHTML = Object.values(upgrades)
+            .sort((a, b) => a.order - b.order)
+            .map(upgrade => `
+            <li class="shop__item mix ${upgrade.category}" data-order="${upgrade.id}">
+                <div class="shop__item-info">
+                    <img src="${upgrade.image}" alt="" class="shop__item-image">
+                    <div class="shop__item-pricing">
+                        <span class="shop__item-name">${upgrade.name}</span>
+                        <span class="shop__item-profit-label">Profit per ${upgrade.type === 'multiplier' ? 'click' : upgrade.type === 'auto' ? 'second' : upgrade.type === 'passive' ? 'hour' : 'click'}</span>
+                        <span class="shop__item-profit">
+                            <img src="./img/coin.png" alt="" class="profit__image">
+                            <span class="profit__value">${upgrade.profit}</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="shop__item-details">
+                    <span class="shop__item-level">lvl ${upgrade.level}</span>
+                    <span class="shop__item-price">
+                        <img src="./img/coin.png" alt="" class="price__image">
+                        <span class="price__value">${upgrade.price}</span>
+                    </span>
+                </div>
+            </li>
+        `).join('')
+
+        document.querySelector('.main__body-clicker').innerHTML = `
+            <div class="sort__buttons">
+                <button class="sort__button" type="button" data-filter=".category-a">Click</button>
+                <button class="sort__button" type="button" data-filter=".category-b">Auto Click</button>
+                <button class="sort__button" type="button" data-filter=".category-c">Passive</button>
+            </div>
+            <ul class="shop__items">
+                ${shopItemsHTML}
+            </ul>
+        `
+
+        const shopContainer = document.querySelector('.shop__items')
+        const mixer = mixitup(shopContainer)
+        mixer.filter('.category-a')
     })
     document.addEventListener('click', async (event) => await onUpgradeClick(event))
 }
@@ -158,37 +72,121 @@ export const initShop = async (telegramID) => {
 const updateUserLocalUpgrades = async (telegramID) => {
     try {
         const data = await getUserUpgrades(telegramID)
-        upgrades = data.upgrades
+
+        const userUpgrades = data.upgrades || {}
+        const userConfigVersion = data.upgradesConfigVersion || 0
+
+        const { upgrades: migratedUpgrades, configVersion } =
+            migrateUserUpgrades(userUpgrades, userConfigVersion)
+
+        upgrades = migratedUpgrades
+        upgradesConfigVersion = userConfigVersion
+        if (configVersion > userConfigVersion) {
+            await setUserUpgrades(migratedUpgrades, configVersion, telegramID)
+        }
     } catch (err) {
         console.error('Не удалось обновить апгрейды:', err.message)
         throw err
     }
 }
+
 const onUpgradeClick = async (event) => {
     if (event.target.closest('.shop__item-price')) {
-        const shopItem = event.target.closest('.shop__item');
+        const shopItem = event.target.closest('.shop__item')
         if (shopItem) {
-            const itemNameElement = shopItem.querySelector('.shop__item-name');
-            const itemPriceElement = shopItem.querySelector('.price__value');
-            const itemProfitElement = shopItem.querySelector('.profit__value');
+            const itemNameElement = shopItem.querySelector('.shop__item-name')
             if (itemNameElement) {
-                const itemName = itemNameElement.textContent;
+                const itemName = itemNameElement.textContent
                 const targetObjName = Object.keys(upgrades).find(key => upgrades[key].name === itemName)
+                const upgrade = upgrades[targetObjName]
                 const currentBalance = getBalanceInfo().balance
-                if (currentBalance >= upgrades[targetObjName].price) {
-                    const newBalance = currentBalance - upgrades[targetObjName].price
-                    upgrades[targetObjName].isBought = true
-                    upgrades[targetObjName].price *= upgrades[targetObjName].increasePricePerLevel
-                    upgrades[targetObjName].level++
-                    upgrades[targetObjName].profit += upgrades[targetObjName].increaseClickPerLevel
-                    itemPriceElement.textContent = upgrades[targetObjName].price
-                    itemProfitElement.textContent = upgrades[targetObjName].profit
+                if (currentBalance >= upgrade.price) {
+                    const newBalance = currentBalance - upgrade.price
+
+                    const newLevel = upgrade.level + 1
+                    const newPrice = calculatePrice(upgrade, newLevel)
+                    const newProfit = calculateProfit(upgrade, newLevel)
+
+                    upgrades[targetObjName] = {
+                        ...upgrade,
+                        level: newLevel,
+                        price: newPrice,
+                        profit: newProfit,
+                        isBought: true
+                    }
+
                     setBalance(newBalance)
-                    await setUserUpgrades(upgrades, tgID)
-                    await updateUserLocalUpgrades(tgID)
+                    await setUserUpgrades(upgrades, upgradesConfigVersion, tgID)
                     setClickerMultiplier(upgrades)
+                    updateUpgradeUI(shopItem, upgrades[targetObjName])
                 }
             }
         }
     }
+}
+
+const updateUpgradeUI = (shopItem, upgrade) => {
+    const priceElement = shopItem.querySelector('.price__value')
+    const profitElement = shopItem.querySelector('.profit__value')
+    const levelElement = shopItem.querySelector('.shop__item-level')
+
+    if (priceElement) priceElement.textContent = upgrade.price
+    if (profitElement) profitElement.textContent = upgrade.profit
+    if (levelElement) levelElement.textContent = `lvl ${upgrade.level}`
+}
+
+const migrateUserUpgrades = (userUpgrades, userConfigVersion = 0) => {
+    if (userConfigVersion < UPGRADES_CONFIG_VERSION) {
+        const migratedUpgrades = { ...userUpgrades }
+
+        Object.keys(UPGRADES_CONFIG).forEach(upgradeId => {
+            if (!migratedUpgrades[upgradeId]) {
+                migratedUpgrades[upgradeId] = createNewUpgrade(upgradeId)
+            } else {
+                const config = UPGRADES_CONFIG[upgradeId]
+                migratedUpgrades[upgradeId] = {
+                    ...config,
+                    level: migratedUpgrades[upgradeId].level,
+                    price: calculatePrice(config, migratedUpgrades[upgradeId].level),
+                    profit: calculateProfit(config, migratedUpgrades[upgradeId].level),
+                    isBought: migratedUpgrades[upgradeId].level > 1
+                }
+            }
+        })
+
+        Object.keys(migratedUpgrades).forEach(upgradeId => {
+            if (!UPGRADES_CONFIG[upgradeId]) {
+                delete migratedUpgrades[upgradeId]
+            }
+        })
+
+        return {
+            upgrades: migratedUpgrades,
+            configVersion: UPGRADES_CONFIG_VERSION
+        }
+    }
+
+    return {
+        upgrades: userUpgrades,
+        configVersion: userConfigVersion
+    }
+}
+
+const createNewUpgrade = (upgradeId) => {
+    const config = UPGRADES_CONFIG[upgradeId]
+    return {
+        ...config,
+        level: 0,
+        price: calculatePrice(config, 0),
+        profit: calculateProfit(config, 0),
+        isBought: false
+    }
+}
+
+const calculatePrice = (config, level) => {
+    return Math.round(config.basePrice * Math.pow(config.priceMultiplier, level))
+}
+
+const calculateProfit = (config, level) => {
+    return config.profit + (config.increaseClickPerLevel * level)
 }
