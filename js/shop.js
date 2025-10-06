@@ -1,16 +1,14 @@
 import {setEventListener, setClickerMultiplier, getBalanceInfo, setBalance} from "./clicker.js"
 import {setUserUpgrades, getUserUpgrades} from "./database.js"
 import {UPGRADES_CONFIG, UPGRADES_CONFIG_VERSION} from './upgradesConfig.js'
+import { LOCAL_USER } from './localUserData.js'
 
-let tgID = ''
-let upgrades = {}
-let upgradesConfigVersion = 0
 const clickerElement = `<img src="./img/hamster.png" alt="" class="clicker__image" style="width: 253px; height: 254px">`
 
 export const initShop = async (telegramID) => {
-    tgID = telegramID
+    LOCAL_USER.telegram.tgID = telegramID
 
-    await updateUserLocalUpgrades(tgID).then(() => setClickerMultiplier(upgrades))
+    await updateUserLocalUpgrades(LOCAL_USER.telegram.tgID).then(async () => await setClickerMultiplier(LOCAL_USER.upgradesData.upgrades))
 
     const navElements = document.querySelectorAll('.navigation__item')
 
@@ -25,8 +23,8 @@ export const initShop = async (telegramID) => {
         navElements[1].classList.toggle('active', true)
         navElements[0].classList.toggle('active', false)
         navElements[2].classList.toggle('active', false)
-
-        const shopItemsHTML = Object.values(upgrades)
+        
+        const shopItemsHTML = Object.values(LOCAL_USER.upgradesData.upgrades)
             .sort((a, b) => a.order - b.order)
             .map(upgrade => `
             <li class="shop__item mix ${upgrade.category}" data-order="${upgrade.id}">
@@ -69,20 +67,20 @@ export const initShop = async (telegramID) => {
     document.addEventListener('click', async (event) => await onUpgradeClick(event))
 }
 
-const updateUserLocalUpgrades = async (telegramID) => {
+const updateUserLocalUpgrades = async () => {
     try {
-        const data = await getUserUpgrades(telegramID)
-
+        const data = await getUserUpgrades()
+        
         const userUpgrades = data.upgrades || {}
         const userConfigVersion = data.upgradesConfigVersion || 0
 
         const { upgrades: migratedUpgrades, configVersion } =
             migrateUserUpgrades(userUpgrades, userConfigVersion)
 
-        upgrades = migratedUpgrades
-        upgradesConfigVersion = userConfigVersion
+        LOCAL_USER.upgradesData.upgrades = migratedUpgrades
+        LOCAL_USER.upgradesData.upgradesConfigVersion = userConfigVersion
         if (configVersion > userConfigVersion) {
-            await setUserUpgrades(migratedUpgrades, configVersion, telegramID)
+            await setUserUpgrades(migratedUpgrades, configVersion)
         }
     } catch (err) {
         console.error('Не удалось обновить апгрейды:', err.message)
@@ -97,28 +95,28 @@ const onUpgradeClick = async (event) => {
             const itemNameElement = shopItem.querySelector('.shop__item-name')
             if (itemNameElement) {
                 const itemName = itemNameElement.textContent
-                const targetObjName = Object.keys(upgrades).find(key => upgrades[key].name === itemName)
-                const upgrade = upgrades[targetObjName]
+                const targetObjName = Object.keys(LOCAL_USER.upgradesData.upgrades).find(key => LOCAL_USER.upgradesData.upgrades[key].name === itemName)
+                const upgrade = LOCAL_USER.upgradesData.upgrades[targetObjName]
                 const currentBalance = getBalanceInfo().balance
                 if (currentBalance >= upgrade.price) {
                     const newBalance = currentBalance - upgrade.price
-
+                    
                     const newLevel = upgrade.level + 1
                     const newPrice = calculatePrice(upgrade, newLevel)
                     const newProfit = calculateProfit(upgrade, newLevel)
 
-                    upgrades[targetObjName] = {
+                    LOCAL_USER.upgradesData.upgrades[targetObjName] = {
                         ...upgrade,
                         level: newLevel,
                         price: newPrice,
                         profit: newProfit,
                         isBought: true
                     }
-
+                    
                     setBalance(newBalance)
-                    await setUserUpgrades(upgrades, upgradesConfigVersion, tgID)
-                    setClickerMultiplier(upgrades)
-                    updateUpgradeUI(shopItem, upgrades[targetObjName])
+                    await setUserUpgrades(LOCAL_USER.upgradesData.upgrades, LOCAL_USER.upgradesData.upgradesConfigVersion)
+                    await setClickerMultiplier(LOCAL_USER.upgradesData.upgrades)
+                    updateUpgradeUI(shopItem, LOCAL_USER.upgradesData.upgrades[targetObjName])
                 }
             }
         }

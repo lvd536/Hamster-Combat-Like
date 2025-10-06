@@ -1,94 +1,17 @@
-import { setUIBalance, setUserRank } from './database.js'
+import { setUIBalance, setUserRank, getUserSessionEnd } from './database.js'
+import { RANKS_CONFIG } from './ranksConfig.js'
+import { LOCAL_USER } from './localUserData.js'
+import { addInfoNotification } from './notifications.js'
 
-// balance vars
-let balance = 0
-let balanceEarned = 0
-// earnings vars
-let clickMultiplier = 1
-let autoClick = 0
-let passiveEarn = 0
-// other vars
-let currentRank = {}
 let isInitialized = false
-let userID = 0
 let autoClickInterval = undefined
 
-const rankList = [
-    {
-        name: 'newbie',
-        id: 1,
-        coinsToReach: 0,
-        coinsToReachUI: '0'
-    },
-    {
-        name: 'sucker',
-        id: 2,
-        coinsToReach: 5000,
-        coinsToReachUI: '5K'
-    },
-    {
-        name: 'budding',
-        id: 3,
-        coinsToReach: 50000,
-        coinsToReachUI: '50K'
-    },
-    {
-        name: 'respected',
-        id: 4,
-        coinsToReach: 150000,
-        coinsToReachUI: '150K'
-    },
-    {
-        name: 'avid',
-        id: 5,
-        coinsToReach: 500000,
-        coinsToReachUI: '500k'
-    },
-    {
-        name: 'reliable',
-        id: 6,
-        coinsToReach: 1000000,
-        coinsToReachUI: '1M'
-    },
-    {
-        name: 'farmer',
-        id: 7,
-        coinsToReach: 2000000,
-        coinsToReachUI: '2M'
-    },
-    {
-        name: 'supplier',
-        id: 8,
-        coinsToReach: 5000000,
-        coinsToReachUI: '5M'
-    },
-    {
-        name: 'magnate',
-        id: 9,
-        coinsToReach: 10000000,
-        coinsToReachUI: '10M'
-    },
-    {
-        name: 'shovel',
-        id: 10,
-        coinsToReach: 100000000,
-        coinsToReachUI: '100M'
-    },
-    {
-        name: 'shavel',
-        id: 11,
-        coinsToReach: 500000000,
-        coinsToReachUI: '500M'
-    }
-];
-
-export const initClicker = async (userBalance, userBalanceEarned, rank, telegramID) => {
+export const initClicker = async (userBalance, userBalanceEarned, rank) => {
     if (isInitialized) return
-    balance = userBalance
-    balanceEarned = userBalanceEarned
-    userID = telegramID
+    LOCAL_USER.clickerData.balance = userBalance
+    LOCAL_USER.clickerData.balanceEarned = userBalanceEarned
     setEventListener()
-    await initializeUserRank(rank, userID)
+    await initializeUserRank(rank)
     isInitialized = true
 }
 
@@ -106,100 +29,101 @@ const onClick = async (event, buttonElement) => {
     setTimeout(async () => {
         buttonElement.style.transform = ``
     }, 100)
-    balance += clickMultiplier
-    balanceEarned += clickMultiplier
-    setUIBalance(balance)
-    if (balanceEarned >= currentRank.coinsToReach) await increaseUserRank()
-    updateRankBar(currentRank)
+    LOCAL_USER.clickerData.balance += LOCAL_USER.clickerData.clickMultiplier
+    LOCAL_USER.clickerData.balanceEarned += LOCAL_USER.clickerData.clickMultiplier
+    setUIBalance(LOCAL_USER.clickerData.balance)
+    if (LOCAL_USER.clickerData.balanceEarned >= LOCAL_USER.clickerData.currentRank.coinsToReach) await increaseUserRank()
+    updateRankBar()
 }
 
-export const setClickerMultiplier = (upgrades) => {
-    clickMultiplier = 1
-    autoClick = 0
-    passiveEarn = 0
+export const setClickerMultiplier = async (upgrades) => {
+    LOCAL_USER.clickerData.clickMultiplier = 1
+    LOCAL_USER.clickerData.autoClick = 0
+    LOCAL_USER.clickerData.passiveEarn = 0
     for (const item in upgrades) {
         if (upgrades[item].isBought) {
             switch (upgrades[item].type) {
                 case 'multiplier':
-                    clickMultiplier += upgrades[item].profit
+                    LOCAL_USER.clickerData.clickMultiplier += upgrades[item].profit
                     break
                 case 'auto':
-                    autoClick += upgrades[item].profit
+                    LOCAL_USER.clickerData.autoClick += upgrades[item].profit
                     break
                 case 'passive':
-                    passiveEarn += upgrades[item].profit
+                    LOCAL_USER.clickerData.passiveEarn += upgrades[item].profit
                     break
             }
         }
     }
     setClickerInterval()
-    document.querySelector('#coinPerTap').textContent = `+${clickMultiplier}`
+    await addUserPassiveEarn()
+    document.querySelector('#coinPerTap').textContent = `+${LOCAL_USER.clickerData.clickMultiplier}`
 }
 
 export const getBalanceInfo = () => {
     return {
-        balance: balance, balanceEarned: balanceEarned,
+        balance: LOCAL_USER.clickerData.balance, balanceEarned: LOCAL_USER.clickerData.balanceEarned,
     }
 }
 
 export const setBalance = (newBalance) => {
-    balance = newBalance
-    setUIBalance(balance)
+    LOCAL_USER.clickerData.balance = newBalance
+    setUIBalance(LOCAL_USER.clickerData.balance)
 }
 
 const getNextRank = () => {
-    let nextObj = rankList.find(rank => rank.coinsToReach >= balanceEarned)
-    if (!nextObj) nextObj = rankList[rankList.length - 1];
+    let nextObj = RANKS_CONFIG.find(rank => rank.coinsToReach >= LOCAL_USER.clickerData.balanceEarned)
+    if (!nextObj) nextObj = RANKS_CONFIG[RANKS_CONFIG.length - 1];
     return nextObj
 }
 
-const calculateUserRank = async (currentRank = 'newbie', telegramID) => {
-    const nextObj = rankList.find(rank => rank.coinsToReach >= balanceEarned)
-    let targetObj = rankList.find(rank => rank.id === nextObj.id - 1)
-    if (!targetObj) targetObj = rankList[rankList.length - 1];
+const calculateUserRank = async (currentRank = 'newbie') => {
+    const nextObj = RANKS_CONFIG.find(rank => rank.coinsToReach >= LOCAL_USER.clickerData.balanceEarned)
+    let targetObj = RANKS_CONFIG.find(rank => rank.id === nextObj.id - 1)
+    if (!targetObj) targetObj = RANKS_CONFIG[RANKS_CONFIG.length - 1];
     if (targetObj.name !== currentRank) {
-        await setUserRank(targetObj.name, telegramID)
+        await setUserRank(targetObj.name)
     }
     return targetObj
 }
 
 const increaseUserRank = async () => {
     const newRank = getNextRank()
-    await setUserRank(newRank.name, userID)
-    await initializeUserRank(newRank.name, userID)
+    await setUserRank(newRank.name)
+    await initializeUserRank(newRank.name)
 }
 
 const updateRankBar = () => {
     const rankBarElement = document.querySelector('.stats__ranking-filled-bar')
     const nextRankObj = getNextRank()
-    const rankReachPercent = (balanceEarned / nextRankObj.coinsToReach) * 100
+    const rankReachPercent = (LOCAL_USER.clickerData.balanceEarned / nextRankObj.coinsToReach) * 100
     rankBarElement.style.width = `${rankReachPercent}%`
 }
 
-const initializeUserRank = async (rank = 'newbie', telegramID) => {
+const initializeUserRank = async (rank = 'newbie') => {
     const coinsToReachElement = document.querySelector('#coinToLevelUp')
     const currentRankElement = document.querySelector('.stats__ranking-rank')
 
-    const userRankObj = await calculateUserRank(rank, telegramID)
+    const userRankObj = await calculateUserRank(rank)
     const nextRankObj = getNextRank(userRankObj.name)
 
     updateRankBar(userRankObj)
 
     coinsToReachElement.textContent = nextRankObj.coinsToReachUI
     currentRankElement.textContent = userRankObj.name
-    currentRank = userRankObj
+    LOCAL_USER.clickerData.currentRank = userRankObj
 }
 
 const addClickAmountUI = (event) => {
     const amountElement = document.createElement(`div`)
     amountElement.classList.add('click_amount')
-    amountElement.innerText = clickMultiplier
+    amountElement.innerText = LOCAL_USER.clickerData.clickMultiplier
     const clicker = document.querySelector('.main__body-clicker')
     const rect = clicker.getBoundingClientRect()
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
-    amountElement.style.top = y + 'px'
-    amountElement.style.left = x + 'px'
+    amountElement.style.top = y - 30 + 'px'
+    amountElement.style.left = x - 10 + 'px'
     const amountCreatedElement = clicker.insertAdjacentElement('afterbegin', amountElement)
     setTimeout(() => {
         amountCreatedElement.remove()
@@ -209,8 +133,22 @@ const addClickAmountUI = (event) => {
 const setClickerInterval = () => {
     clearInterval(autoClickInterval)
     autoClickInterval = setInterval(async () => {
-        balance += autoClick
-        balanceEarned += autoClick
-        setUIBalance(balance)
+        LOCAL_USER.clickerData.balance += LOCAL_USER.clickerData.autoClick
+        LOCAL_USER.clickerData.balanceEarned += LOCAL_USER.clickerData.autoClick
+        setUIBalance(LOCAL_USER.clickerData.balance)
     }, 1000)
+}
+
+const addUserPassiveEarn = async () => {
+    const lastSessionDate = await getUserSessionEnd().then((date) => {
+        return new Date(date.lastSessionEnd)
+    })
+    const dateNow = new Date()
+    const resultInSeconds = Math.round((dateNow - lastSessionDate) / 1000)
+    if (resultInSeconds <= 20) return
+    const earnValue = resultInSeconds * LOCAL_USER.clickerData.passiveEarn
+    LOCAL_USER.clickerData.balance += earnValue
+    LOCAL_USER.clickerData.balanceEarned += earnValue
+    setUIBalance(LOCAL_USER.clickerData.balance)
+    addInfoNotification(`Вы успешно получили пассивный доход: ${earnValue}`)
 }

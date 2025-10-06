@@ -17,7 +17,7 @@ export const initTop = async () => {
                 : i === 1 ? `top__item border-silver`
                     : i === 2 ? `top__item border-bronze`
                         : ``
-            topItemsElement += `<li class="top__item ${borderElement}">
+                    topItemsElement += `<li class="top__item ${borderElement}">
                             <div class="top__info">
                                 <div class="top__position">
                                     <span class="top__number">${i+1}</span>
@@ -29,12 +29,12 @@ export const initTop = async () => {
                                 ${crownElement}
                             </div>
                             <div class="top__balance">
-                                <p class="top__balance-value">${topUsers[i].balanceEarned}</p>
+                                <p class="top__balance-value">${topUsers[i].balanceEarned || 0}</p>
                                 <p class="top__balance-text">Balance Earned</p>
                             </div>
                         </li>`
         }
-        document.querySelector('.main__body-clicker').innerHTML =
+        document.querySelector('.main__body-clicker').innerHTML = 
             `<div class="main__body-top"><ul class="top__items">${topItemsElement}</ul></div>`
     })
 }

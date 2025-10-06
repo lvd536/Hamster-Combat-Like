@@ -8,10 +8,9 @@ export const UPGRADES_CONFIG = {
         level: 1,
         maxLevel: 20,
         increaseClickPerLevel: 1,
-        priceMultiplier: 3,
+        priceMultiplier: 2,
         type: 'multiplier',
         category: 'category-a',
-        description: 'Увеличивает прибыль с каждого клика',
         order: 1
     },
     memeCoins: {
@@ -23,10 +22,9 @@ export const UPGRADES_CONFIG = {
         level: 1,
         maxLevel: 20,
         increaseClickPerLevel: 2,
-        priceMultiplier: 4,
+        priceMultiplier: 2,
         type: 'multiplier',
         category: 'category-a',
-        description: 'Увеличивает прибыль с каждого клика',
         order: 2
     },
     marginX10: {
@@ -38,10 +36,9 @@ export const UPGRADES_CONFIG = {
         level: 1,
         maxLevel: 30,
         increaseClickPerLevel: 3,
-        priceMultiplier: 5,
+        priceMultiplier: 2,
         type: 'auto',
         category: 'category-b',
-        description: 'Автоматически генерирует прибыль',
         order: 3
     },
     marginX20: {
@@ -53,12 +50,25 @@ export const UPGRADES_CONFIG = {
         level: 1,
         maxLevel: 40,
         increaseClickPerLevel: 4,
-        priceMultiplier: 6,
+        priceMultiplier: 2,
         type: 'auto',
         category: 'category-b',
-        description: 'Автоматически генерирует прибыль',
         order: 4
+    },
+    passiveTrader: {
+        id: 'passiveTrader',
+        name: 'Passive Trader',
+        image: './img/x10.svg',
+        profit: 4,
+        basePrice: 30000,
+        level: 1,
+        maxLevel: 20,
+        increaseClickPerLevel: 4,
+        priceMultiplier: 2,
+        type: 'passive',
+        category: 'category-c',
+        order: 5
     }
 };
 
-export const UPGRADES_CONFIG_VERSION = 4;
+export const UPGRADES_CONFIG_VERSION = 6;
