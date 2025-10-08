@@ -117,7 +117,7 @@ const initializeUserRank = async (rank = 'newbie') => {
 const addClickAmountUI = (event) => {
     const amountElement = document.createElement(`div`)
     amountElement.classList.add('click_amount')
-    amountElement.innerText = LOCAL_USER.clickerData.clickMultiplier
+    amountElement.innerText = `${LOCAL_USER.clickerData.clickMultiplier}`
     const clicker = document.querySelector('.main__body-clicker')
     const rect = clicker.getBoundingClientRect()
     const x = event.clientX - rect.left;

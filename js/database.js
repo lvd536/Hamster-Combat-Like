@@ -5,16 +5,14 @@ import { LOCAL_USER } from "./localUserData.js";
 import * as upgradesConfig from './upgradesConfig.js'
 import { addErrorNotification} from "./notifications.js";
 
-const url = env.DB_URL
-const key = env.DB_KEY
-const supabase = createClient(url, key)
+const supabase = createClient(env.DB_URL, env.DB_KEY)
 
-export const createUser = async (username) => {
+export const createUser = async () => {
     try {
         const { data, error } = await supabase
             .from('Users')
             .insert([{
-                username: username,
+                username: LOCAL_USER.telegram.username,
                 telegramID: LOCAL_USER.telegram.tgID,
                 upgrades: upgradesConfig.UPGRADES_CONFIG,
                 upgradesConfigVersion: upgradesConfig.UPGRADES_CONFIG_VERSION
@@ -28,7 +26,7 @@ export const createUser = async (username) => {
     }
 }
 
-export const getUser = async (tg) => {
+export const getUser = async () => {
     try {
         const { data, error } = await supabase
             .from('Users')
@@ -39,16 +37,15 @@ export const getUser = async (tg) => {
         if (error) throw error
         
         if (data === null) {
-            const username = tg.initDataUnsafe.user.username || tg.initDataUnsafe.user.first_name
-            await createUser(username)
-            setUIUsername(username)
-            setUIBalance(1)
-            await initClicker(1, 1)
+            await createUser()
+            setUIUsername()
+            setUIBalance()
+            await initClicker(LOCAL_USER.clickerData.balance, LOCAL_USER.clickerData.balanceEarned, LOCAL_USER.clickerData.currentRank)
         }
         else {
-            const {balance, balanceEarned, username, rank} = data
-            setUIUsername(username)
-            setUIBalance(balance)
+            const {balance, balanceEarned, rank} = data
+            setUIUsername()
+            setUIBalance()
             await initClicker(balance, balanceEarned, rank)
             return data
         }
@@ -190,17 +187,17 @@ export const getUserSessionEnd = async () => {
     }
 }
 
-export const setUIUsername = (username) => {
+export const setUIUsername = () => {
     const usernameElement = document.querySelector('.username__text')
-    usernameElement.innerText = username
+    usernameElement.innerText = LOCAL_USER.telegram.username
 }
 
-export const setUIBalance = (balance) => {
+export const setUIBalance = () => {
     const balanceElement = document.querySelector('.stats__value-text')
-    balanceElement.innerText = balance
+    balanceElement.innerText = LOCAL_USER.clickerData.balance
 }
 
-export const syncBalance = async (balanceInfo = {}, telegramID) => {
+export const syncBalance = async (balanceInfo = {}) => {
     const balanceDetails = balanceInfo
     await setUserBalance(balanceDetails.balance, balanceDetails.balanceEarned)
 }

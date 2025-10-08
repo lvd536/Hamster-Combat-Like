@@ -1,0 +1,41 @@
+.main__heading {
+  position: relative;
+  max-width: 450px;
+  width: 100vw;
+  max-height: 700px;
+  height: 30vh;
+  background: linear-gradient(180deg,
+          #212429 0%,
+          #212429 37%,
+          #f9d838 100%);
+
+  &-username {
+    display: flex;
+    margin-top: 30px;
+  }
+  &-logo {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 110%;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-top: 5px;
+  }
+}
+.username {
+  &__icon-bg {
+    border-radius: 11px;
+    padding: 8px;
+    width: 30px;
+    height: 32px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(78, 73, 73, 0.2) 100%);
+  }
+  &__text {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 110%;
+    letter-spacing: -0.02em;
+    margin: 10px 0 10px 9px;
+    color: #fff;
+  }
+}

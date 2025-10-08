@@ -5,9 +5,7 @@ import { LOCAL_USER } from './localUserData.js'
 
 const clickerElement = `<img src="./img/hamster.png" alt="" class="clicker__image" style="width: 253px; height: 254px">`
 
-export const initShop = async (telegramID) => {
-    LOCAL_USER.telegram.tgID = telegramID
-
+export const initShop = async () => {
     await updateUserLocalUpgrades(LOCAL_USER.telegram.tgID).then(async () => await setClickerMultiplier(LOCAL_USER.upgradesData.upgrades))
 
     const navElements = document.querySelectorAll('.navigation__item')
