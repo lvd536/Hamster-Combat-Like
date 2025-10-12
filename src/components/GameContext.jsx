@@ -69,6 +69,17 @@ export function GameProvider({ children }) {
         return current
     }
 
+    function calculateRankBarPercent() {
+        const next = RANKS_CONFIG.find(r => r.coinsToReach > balanceEarned) || RANKS_CONFIG.at(-1)
+        const rankReachPercent = (balanceEarned / next.coinsToReach) * 100
+        return rankReachPercent
+    }
+
+    function calculateReachNextRankValue() {
+        const next = RANKS_CONFIG.find(r => r.coinsToReach > balanceEarned) || RANKS_CONFIG.at(-1)
+        return next.coinsToReach
+    }
+
     // ------------------- MULTIPLIERS -------------------
     function calculateMultipliers(upgradesData) {
         let click = 1, auto = 0, passive = 0
@@ -214,6 +225,9 @@ export function GameProvider({ children }) {
                 upgrades,
                 onClick,
                 buyUpgrade,
+                calculateRankBarPercent,
+                calculateReachNextRankValue,
+                calculateRank,
                 userId
             }}
         >

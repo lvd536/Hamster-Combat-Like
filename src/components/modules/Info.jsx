@@ -2,7 +2,7 @@ import coin from '../../assets/coin.png'
 import {useGame} from "../GameContext.jsx"
 
 export default function Info() {
-    const {clickMultiplier} = useGame()
+    const {clickMultiplier, calculateRankBarPercent, calculateReachNextRankValue, balanceEarned, calculateRank} = useGame()
     return (
         <ul className="main__body-info">
             <li className="info__item">
@@ -14,15 +14,15 @@ export default function Info() {
             </li>
             <li className="info__item" style={{margin: '0 10px 0 10px', width: '130px'}}>
                 <div className="stats__ranking">
-                    <span className="stats__ranking-rank">Elite</span>
+                    <span className="stats__ranking-rank">{calculateRank(balanceEarned).name}</span>
                     <div className="stats__ranking-bar">
-                        <div className="stats__ranking-filled-bar"></div>
+                        <div className="stats__ranking-filled-bar" style={{width: `${calculateRankBarPercent()}%`}}></div>
                     </div>
                 </div>
             </li>
             <li className="info__item">
                 <h3 className="info__item-name" style={{color: '#6f72e2'}}>Coins to level up</h3>
-                <h2 className="info__item-value" id="coinToLevelUp">1k</h2>
+                <h2 className="info__item-value" id="coinToLevelUp">{calculateReachNextRankValue()}</h2>
             </li>
         </ul>
     )
