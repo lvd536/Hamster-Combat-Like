@@ -9,10 +9,10 @@ window.Telegram.WebApp = {
     isExpanded: false,
     ready: true,
     sendData: (data) => {
-        console.log("sendData called:", data);
+        console.log("sendData called:", data)
     },
     expand: () => {
-        console.log("expand called");
+        console.log("expand called")
     },
     MainButton: {
         text: "OK", onClick: (fn) => {

@@ -1,29 +1,21 @@
-import Info from "./Info";
-import Stats from "./Stats";
-import Clicker from "./Clicker";
-import Top from "./Top";
-import Shop from "./Shop";
-import {useEffect, useState} from "react";
-import {getUser, setUserBalance} from '../database.js'
+import Info from "./Info"
+import Stats from "./Stats"
+import Clicker from "./Clicker"
+import Top from "./Top"
+import Shop from "./Shop"
+import {useEffect, useState} from "react"
+import {setUserBalance} from '../database.js'
+import {useGame} from "../GameContext.jsx"
 
 export default function Body() {
     const [page, setPage] = useState('main')
-    const [balance, setBalance] = useState(1)
-    const [balanceEarned, setBalanceEarned] = useState(1)
-
+    const {balance, balanceEarned, userId} = useGame()
     useEffect(() => {
-        const result = async () => await getUser(window.Telegram.WebApp.initDataUnsafe.user.id)
-            .then(({balance, balanceEarned}) => {
-                setBalance(balance)
-                setBalanceEarned(balanceEarned)
-            })
-
-        const syncBalanceInterval = setInterval(async () => {
-            await setUserBalance(balance, balanceEarned, window.Telegram.WebApp.initDataUnsafe.user.id)
+        const interval = setInterval(async () => {
+            if (balance > 2) await setUserBalance(balance, balanceEarned, userId)
         }, 2500)
-
-        return clearInterval(syncBalanceInterval)
-    }, [])
+        return () => clearInterval(interval)
+    }, [balance, balanceEarned])
 
     function changePage(page) {
         setPage(page)
@@ -33,7 +25,7 @@ export default function Body() {
         <div className="main__body">
             { page === "main" && <Info balanceEarned={balanceEarned} /> }
             <Stats balance={balance}/>
-            { page === "main" && <Clicker setBalance={setBalance} balance={balance}/> }
+            { page === "main" && <Clicker /> }
             { page === "shop" && <Shop /> }
             { page === "top" && <Top /> }
             <nav className="navigation">

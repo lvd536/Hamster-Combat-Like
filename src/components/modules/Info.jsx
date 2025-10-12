@@ -1,13 +1,15 @@
 import coin from '../../assets/coin.png'
+import {useGame} from "../GameContext.jsx"
 
 export default function Info() {
+    const {clickMultiplier} = useGame()
     return (
         <ul className="main__body-info">
             <li className="info__item">
                 <h3 className="info__item-name" style={{color: '#f79841'}}>Earn per tap</h3>
                 <div className="info__item-desc">
                     <img src={coin} alt="" className="info__item-image"/>
-                    <h2 className="info__item-value" id="coinPerTap">+1</h2>
+                    <h2 className="info__item-value" id="coinPerTap">{`+${clickMultiplier}`}</h2>
                 </div>
             </li>
             <li className="info__item" style={{margin: '0 10px 0 10px', width: '130px'}}>

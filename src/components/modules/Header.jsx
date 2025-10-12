@@ -1,6 +1,7 @@
 import logo from '../../assets/logo.png'
 
-export default function Header({username}) {
+export default function Header() {
+    const username = window.Telegram.WebApp.initDataUnsafe.user.username
     return (
         <div className="main__heading">
             <h2 className="main__heading-logo">Shovel Coin</h2>

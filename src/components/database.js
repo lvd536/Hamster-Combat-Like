@@ -85,7 +85,7 @@ export const setUserUpgrades = async (upgrades, configVersion, id) => {
                 upgrades: upgrades,
                 upgradesConfigVersion: configVersion
             })
-            .eq('telegramID', id);
+            .eq('telegramID', id)
 
         if (error) throw error
 
