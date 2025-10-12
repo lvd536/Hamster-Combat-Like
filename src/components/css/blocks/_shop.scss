@@ -1,0 +1,121 @@
+.shop {
+  &__items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 10px;
+  }
+  &__item {
+    border-radius: 15px;
+    width: 165px;
+    height: 107px;
+    background: #32363c;
+
+    &-info {
+      display: flex;
+      margin-top: 15px;
+    }
+    &-image {
+      margin: 0 15px 10px 17px;
+    }
+    &-pricing {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+    }
+    &-name {
+      font-weight: 400;
+      font-size: 9px;
+      line-height: 110%;
+      letter-spacing: -0.02em;
+      padding-bottom: 10px;
+      color: #fff;
+    }
+    &-profit-label {
+      font-weight: 500;
+      font-size: 7px;
+      line-height: 110%;
+      letter-spacing: -0.02em;
+      padding-bottom: 3px;
+      color: #fff;
+      opacity: .5;
+    }
+    &-profit {
+      display: flex;
+    }
+    &-details {
+      display: flex;
+      padding-top: 10px;
+      margin-top: 10px;
+      align-items: center;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 1px;
+    }
+    &-level {
+      font-weight: 600;
+      font-size: 9px;
+      line-height: 110%;
+      letter-spacing: -0.02em;
+      padding-right: 12px;
+      margin-left: 18px;
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 1px;
+      color: #fff;
+    }
+    &-price {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+.profit {
+  &__image {
+    width: 13px;
+    height: 13px;
+    margin-right: 3px;
+  }
+  &__value {
+    display: flex;
+    font-weight: 600;
+    font-size: 8px;
+    line-height: 110%;
+    letter-spacing: -0.02em;
+    align-items: center;
+    color: #fff;
+  }
+}
+.price {
+  &__image {
+    width: 14px;
+    height: 14px;
+    margin-left: 12px;
+  }
+  &__value {
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 110%;
+    letter-spacing: -0.02em;
+    margin-left: 3px;
+    color: #fff;
+  }
+}
+.sort {
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+  }
+  &__button {
+    font-size: 12px;
+    font-weight: 400;
+    width: 100px;
+    height: 30px;
+    border: 1px solid #535353;
+    box-shadow: 2px 2px 2px #535353;
+    border-radius: 2px;
+    background: #32363c;
+    color: #e8e0e0;
+  }
+}

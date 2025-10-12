@@ -1,0 +1,13 @@
+.container {
+  width: 368px;
+  height: var(--tg-viewport-stable-height);
+}
+.main {
+  &__heading,
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}

@@ -1,0 +1,59 @@
+.crown {
+  &-gold { color: #FFD700; opacity: .7; }
+  &-silver { color: #C0C0C0; opacity: .7; }
+  &-bronze { color: #CD7F32; opacity: .7; }
+}
+.top {
+  &__item {
+    display: flex;
+    max-width: 400px;
+    width: 80vw;
+    height: 50px;
+    padding: 15px;
+    border: 1px solid #3f4045;
+    box-shadow: 2px 2px 2px #3f4045;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: space-between;
+    color: #dfdbdb;
+    background: #393b42;
+  }
+  &__info {
+    display: flex;
+  }
+  &__number {
+    font-size: 20px;
+    margin-right: 20px;
+    text-align: center;
+  }
+  &__stats {
+    text-align: left;
+    margin-right: 10px;
+  }
+  &__username {
+    font-size: 16px;
+    margin-bottom: 2px;
+  }
+  &__rank {
+    font-size: 12px;
+    opacity: .6;
+  }
+  &__balance {
+    text-align: right;
+
+    &-value {
+      font-size: 16px;
+      margin-bottom: 2px;
+    }
+    &-text {
+      font-size: 12px;
+      opacity: .6;
+    }
+  }
+}
+.border {
+  &-gold { border: 1px solid rgba(255, 215, 0, 0.4); box-shadow: 2px 2px 2px rgba(255, 215, 0, 0.4);}
+  &-silver { border: 1px solid rgba(192, 192, 192, 0.4); box-shadow: 2px 2px 2px rgba(192, 192, 192, 0.4);}
+  &-bronze { border: 1px solid rgba(205, 127, 50, 0.4); box-shadow: 2px 2px 2px rgba(205, 127, 50, 0.4);}
+}
