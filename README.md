@@ -1,16 +1,83 @@
-# React + Vite
+# Shovel Coin
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![status](https://img.shields.io/badge/status-prototype-orange) ![tech](https://img.shields.io/badge/tech-HTML%20%7C%20CSS%20%7C%20React%20%7C%20Vite-blue) ![db](https://img.shields.io/badge/db-Supabase-informational)
+> Данный проект просто является практикой и/или прототипом основной задумки приложения. Пока что я планирую развивать это приложение дальше и добавлять в него что-то интересное.
+## Кратко
 
-Currently, two official plugins are available:
+**Shovel Coin** — небольшой прототип Telegram Web App с игровыми элементами. Проект служит практикой реализации игрового кликера, магазина улучшений и интеграции с удалённой базой данных (Supabase). Это не коммерческий продукт, а рабочий прототип и шаблон для дальнейшей разработки.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Оглавление
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. [Что это делает](#что-это-делает)
+2. [Технологии](#технологии)
+3. [Установка и запуск](#установка-и-запуск)
+4. [Функционал сейчас](#функционал-сейчас)
+5. [Планируемые улучшения](#планируемые-улучшения)
+6. [Авторство и благодарности](#авторство-и-благодарности)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Что это делает
+
+Проект реализует минимальный игровой цикл clicker‑стиля внутри Telegram Web App:
+
+* загрузка данных пользователя (username и профильные данные) из Supabase;
+* простой кликер — генерация "монет" при клике;
+* магазин улучшений, повышающих доход (пассив и/или актив);
+* экран загрузки и начальная маршрутизация в зависимости от наличия данных;
+* вёрстка на чистом HTML/CSS/React/Vite с модульной организацией кода.
+
+---
+
+## Технологии
+
+* HTML5
+* CSS3 (vanilla)
+* React
+* Telegram Web Apps SDK
+* Supabase
+
+---
+
+## Установка и запуск
+
+> Предполагается, что у вас уже настроен проект и есть доступ к Supabase и Telegram Web App.
+1. Клонируйте репозиторий
+2. Установите свои значения в js/environment.js
+3. Желательно поменяйте значения в эмуляторе web app на свои с telegram
+4. Установите нужные библиотеки ```npm i```
+5. Запустите сайт ```npm run dev```
+
+## Функционал сейчас
+
+* Рабочая связка с базой данных и базовые проверки/сверки данных.
+* Ранги и шкала их достижения
+* Кликер с накоплением валюты и первичным магазином улучшений.
+* Экран загрузки и поиск/подгрузка пользовательских данных (username и прочее).
+* Базовый дизайн (вдохновлён идеями Hamster Combat).
+* Полноценный топ игроков (лидерборд).
+
+---
+
+## Планируемые улучшения
+
+* Подгрузка и отображение аватаров пользователей.
+* Оптимизация производительности и исправление вёрстки.
+
+---
+
+## Авторство и благодарности
+
+Автор проекта — разработчик, изучающий JavaScript && React и экспериментирующий с Telegram Web Apps и Supabase.
+
+Отдельная благодарность проекту *Hamster Combat* за вдохновение в визуальной части интерфейса))).
+
+---
+
+## Контакты
+
+Telegram - @lvdshka
+
+---
