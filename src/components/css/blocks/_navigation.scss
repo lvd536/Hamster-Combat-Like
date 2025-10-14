@@ -1,9 +1,9 @@
 .navigation {
   display: flex;
+  position: fixed;
+  bottom: 2vh;
   justify-content: center;
   align-items: center;
-  margin-top: auto;
-  margin-bottom: auto;
   border-radius: 12px;
   width: 308px;
   height: 60px;
@@ -16,6 +16,7 @@
     gap: 40px;
     margin: 0;
     padding: 0;
+    background: rgba(50, 54, 60, 0.7);
   }
   &__item {
     display: flex;
