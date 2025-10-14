@@ -1,4 +1,3 @@
-// src/context/GameContext.jsx
 import { createContext, useContext, useEffect, useState } from "react"
 import {
     getUserUpgrades,
@@ -24,6 +23,7 @@ export function GameProvider({ children }) {
     const [clickMultiplier, setClickMultiplier] = useState(1)
     const [autoClick, setAutoClick] = useState(0)
     const [passiveEarn, setPassiveEarn] = useState(0)
+    const [page, setPage] = useState("mine")
     const userId = window.Telegram.WebApp.initDataUnsafe.user.id
 
     // ------------------- INITIALIZATION -------------------
@@ -221,6 +221,8 @@ export function GameProvider({ children }) {
                 clickMultiplier,
                 autoClick,
                 passiveEarn,
+                page,
+                setPage,
                 rank,
                 upgrades,
                 onClick,

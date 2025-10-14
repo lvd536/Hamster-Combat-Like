@@ -1,6 +1,8 @@
 import coin from '../../assets/coin.png'
+import {useGame} from "../GameContext.jsx";
 
-export default function Stats({balance}) {
+export default function Stats() {
+    const {balance} = useGame()
     return (
         <div className="main__body-stats">
             <div className="stats__value">
