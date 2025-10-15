@@ -30,10 +30,10 @@ export function GameProvider({ children }) {
     useEffect(() => {
         async function init() {
             setIsLoading(true)
-            await loadUpgrades()
-            await loadPassiveIncome()
+            const upgrades = await loadUpgrades()
+            const balanceInfo = await loadUserBalance()
+            await loadPassiveIncome(upgrades.passive, balanceInfo.balance)
             await updateUserRank()
-            await loadUserBalance()
             setIsLoading(false)
         }
         init()
@@ -49,6 +49,7 @@ export function GameProvider({ children }) {
         const balanceInfo = await getUserBalance(userId && window.Telegram.WebApp.initDataUnsafe.user.id)
         setBalance(balanceInfo.balance)
         setBalanceEarned(balanceInfo.balanceEarned)
+        return balanceInfo
     }
     // ------------------- LOADING UPGRADES -------------------
     async function loadUpgrades() {
@@ -59,7 +60,8 @@ export function GameProvider({ children }) {
         const { upgrades: migrated, configVersion } = migrateUpgrades(userUpgrades, userConfigVersion)
         setUpgradesState(migrated)
         if (configVersion > userConfigVersion) await setUserUpgrades(migrated, configVersion, userId)
-        calculateMultipliers(migrated)
+        const multipliers = calculateMultipliers(migrated)
+        return multipliers
     }
 
     // ------------------- RANK SYSTEM ;) -------------------
@@ -98,6 +100,8 @@ export function GameProvider({ children }) {
         setClickMultiplier(click)
         setAutoClick(auto)
         setPassiveEarn(passive)
+
+        return { click, auto, passive }
     }
 
     // ------------------- CLICK LOGIC -------------------
@@ -120,16 +124,15 @@ export function GameProvider({ children }) {
     }, [isLoading, autoClick])
 
     // ------------------- PASSIVE INCOME -------------------
-    async function loadPassiveIncome() {
+    async function loadPassiveIncome(passiveEarn, balance) {
         const session = await getUserSessionEnd(userId)
         if (!session.lastSessionEnd) return
         const last = new Date(session.lastSessionEnd)
         const diffSeconds = Math.round((Date.now() - last) / 1000)
-        if (diffSeconds > 20 && passiveEarn > 0 && balance) {
+        if (passiveEarn > 0 && balance) {
             const earned = diffSeconds * passiveEarn
             setBalance(b => b + earned)
             setBalanceEarned(be => be + earned)
-            console.log(`Пассивный доход: +${earned}`)
         }
     }
     // ------------------- Balance Sync -------------------
