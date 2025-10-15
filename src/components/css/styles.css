@@ -160,24 +160,21 @@ html, body {
 }
 
 .loading__screen {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: flex;
   position: absolute;
   top: 0;
   left: 0;
+  font-weight: 500;
+  font-size: 30px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   background: #2c2f35;
   gap: 90px;
 }
-.loading__screen.active {
-  display: flex;
-}
 .loading__screen-title {
-  font-weight: 500;
-  font-size: 30px;
   line-height: 110%;
   letter-spacing: -0.02em;
   color: #fff;
@@ -193,8 +190,6 @@ html, body {
   animation: circle-pulse 4s ease-out infinite;
 }
 .loading__screen-description {
-  font-weight: 500;
-  font-size: 30px;
   line-height: 110%;
   letter-spacing: -0.02em;
   text-wrap: nowrap;
@@ -219,7 +214,6 @@ html, body {
   gap: 40px;
   margin: 0;
   padding: 0;
-  background: rgba(50, 54, 60, 0.7);
 }
 .navigation__item {
   display: flex;
@@ -245,45 +239,6 @@ html, body {
 }
 .navigation__item.active {
   background: rgba(33, 36, 41, 0.4980392157);
-}
-
-.notification {
-  font-weight: 300;
-  font-size: 14px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 200px;
-  height: 80px;
-  border-radius: 10px;
-  z-index: 999;
-  opacity: 0;
-  animation: notify-slide 5s ease-out;
-}
-.notification.info {
-  border: 3px solid rgba(128, 171, 227, 0.4);
-  background: radial-gradient(#444b61, #434f88);
-  color: rgba(255, 255, 255, 0.79);
-}
-.notification.warning {
-  border: 3px solid rgba(182, 69, 69, 0.4);
-  background: radial-gradient(#676767, #886843);
-  color: rgba(255, 255, 255, 0.79);
-}
-.notification.error {
-  border: 3px solid rgba(244, 1, 1, 0.4);
-  background: radial-gradient(#ae3e3e, #cf2525);
-  color: rgba(255, 255, 255, 0.79);
-}
-.notification__main {
-  padding: 5px;
-}
-.notification__type {
-  display: flex;
-  align-items: center;
-}
-.notification__message {
-  font-size: 12px;
 }
 
 .shop__items {
