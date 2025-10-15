@@ -5,7 +5,7 @@ import {
     getUserSessionEnd,
     setUserRank,
     setUserBalance,
-    getUserBalance
+    getUserBalance, setUserSessionEnd
 } from "./database.js"
 import { RANKS_CONFIG } from "./configs/ranksConfig.js"
 import { UPGRADES_CONFIG, UPGRADES_CONFIG_VERSION } from "./configs/upgradesConfig.js"
@@ -38,6 +38,12 @@ export function GameProvider({ children }) {
         }
         init()
     }, [])
+    useEffect(() => {
+        const sessionEndTracker = setInterval(async () => {
+            await setUserSessionEnd(new Date(), userId)
+        }, 3000)
+        return () => clearInterval(sessionEndTracker)
+    }, [userId])
     // ------------------- Setting Balance -------------------
     async function loadUserBalance() {
         const balanceInfo = await getUserBalance(userId && window.Telegram.WebApp.initDataUnsafe.user.id)
@@ -97,11 +103,9 @@ export function GameProvider({ children }) {
     // ------------------- CLICK LOGIC -------------------
     function onClick() {
         if (!balance) return
-        const newBalance = balance + clickMultiplier
-        const newEarned = balanceEarned + clickMultiplier
-        setBalance(newBalance)
-        setBalanceEarned(newEarned)
-        if (newEarned >= rank.coinsToReach) updateUserRank()
+        setBalance((currentBalance) => currentBalance + clickMultiplier)
+        setBalanceEarned((currentBalanceEarned) => currentBalanceEarned + clickMultiplier)
+        if (balance >= rank.coinsToReach) updateUserRank()
     }
 
     // ------------------- AUTO CLICK -------------------
@@ -114,7 +118,7 @@ export function GameProvider({ children }) {
             }
         }, 1000)
         return () => clearInterval(interval)
-    }, [autoClick])
+    }, [isLoading, autoClick])
 
     // ------------------- PASSIVE INCOME -------------------
     async function loadPassiveIncome() {
