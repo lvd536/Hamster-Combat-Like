@@ -23,6 +23,7 @@ export function GameProvider({ children }) {
     const [clickMultiplier, setClickMultiplier] = useState(1)
     const [autoClick, setAutoClick] = useState(0)
     const [passiveEarn, setPassiveEarn] = useState(0)
+    const [earnedInPassive, setEarnedInPassive] = useState(0)
     const [page, setPage] = useState("mine")
     const userId = window.Telegram.WebApp.initDataUnsafe.user.id
 
@@ -133,6 +134,8 @@ export function GameProvider({ children }) {
             const earned = diffSeconds * passiveEarn
             setBalance(b => b + earned)
             setBalanceEarned(be => be + earned)
+            setEarnedInPassive(earned)
+            console.log(`Пассивный доход: +${earned}`)
         }
     }
     // ------------------- Balance Sync -------------------
@@ -236,6 +239,7 @@ export function GameProvider({ children }) {
                 calculateRankBarPercent,
                 calculateReachNextRankValue,
                 calculateRank,
+                earnedInPassive,
                 userId
             }}
         >

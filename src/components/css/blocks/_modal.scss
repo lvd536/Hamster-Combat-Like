@@ -1,0 +1,66 @@
+.modal {
+  display: flex;
+  position: fixed;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 100000;
+  opacity: 0;
+  transition: all .7s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.5);
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  &__icon {
+    color: white;
+    opacity: 0.8;
+  }
+  &__name {
+    font-weight: bold;
+    color: rgba(255, 255, 255, .8);
+  }
+  &__info {
+    display: flex;
+    top: 5vh;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+  }
+  &__content {
+    position: fixed;
+    top: 50vh;
+    font-weight: 450;
+    font-size: 18px;
+    letter-spacing: 0.2px;
+    width: 90vw;
+    color: rgba(255, 255, 255, 0.86);
+    scale: 0;
+    transition: all .7s ease-in-out;
+     &.active {
+       scale: 1;
+     }
+  }
+  &__close {
+    position: fixed;
+    bottom: 5vh;
+    font-weight: bold;
+    width: 90px;
+    height: 30px;
+    border: 1px solid #e69393;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #fa6666;
+    background-color: transparent;
+    scale: 0;
+    transition: all .7s ease-in-out;
+     &.active{
+       scale: 1;
+     }
+  }
+}
