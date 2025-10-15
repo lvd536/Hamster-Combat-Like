@@ -114,7 +114,6 @@ export function GameProvider({ children }) {
             if (balance) {
                 setBalance(b => b + autoClick)
                 setBalanceEarned(be => be + autoClick)
-                console.log('add coins: ', autoClick)
             }
         }, 1000)
         return () => clearInterval(interval)
