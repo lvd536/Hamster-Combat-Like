@@ -161,7 +161,7 @@ html, body {
 
 .loading__screen {
   display: flex;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   font-weight: 500;
@@ -171,29 +171,34 @@ html, body {
   align-items: center;
   width: 100%;
   height: 100%;
+  z-index: 1000;
   background: #2c2f35;
   gap: 90px;
 }
+.loading__screen-image {
+  position: fixed;
+  top: 10vh;
+  animation: hamster-pulse 2s infinite;
+}
 .loading__screen-title {
+  position: fixed;
+  font-size: 28px;
+  font-weight: 800;
   line-height: 110%;
   letter-spacing: -0.02em;
-  color: #fff;
-}
-.loading__screen-circle {
-  min-width: 100px;
-  min-height: 100px;
-  background: rgba(103, 103, 205, 0.68);
-  border-radius: 50%;
-  border: 4px solid rgba(51, 51, 51, 0.52);
-  border-right: none;
-  border-bottom: none;
-  animation: circle-pulse 4s ease-out infinite;
+  background: linear-gradient(180deg, rgba(227, 160, 14, 0.85), rgba(237, 207, 36, 0.85));
+  -webkit-background-clip: text;
+  color: transparent;
 }
 .loading__screen-description {
+  position: fixed;
+  font-size: 18px;
+  font-weight: 350;
+  bottom: 5vh;
   line-height: 110%;
   letter-spacing: -0.02em;
   text-wrap: nowrap;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.65);
 }
 
 .navigation {
@@ -258,9 +263,9 @@ html, body {
   margin-top: 15px;
 }
 .shop__item-image {
+  margin: 0 15px 10px 17px;
   width: 34px;
   height: 34px;
-  margin: 0 15px 10px 17px;
 }
 .shop__item-pricing {
   display: flex;
@@ -512,42 +517,12 @@ html, body {
     opacity: 0;
   }
 }
-@keyframes notify-slide {
-  0% {
-    transform: translateY(0%);
-    opacity: 0;
-    scale: 0;
-  }
-  10% {
-    opacity: 1;
-    scale: 1;
-  }
-  80% {
-    bottom: 70vh;
-    opacity: 1;
-    scale: 1;
-  }
-  100% {
-    bottom: 90vh;
-    opacity: 0;
-    scale: 0;
-  }
-}
-@keyframes circle-pulse {
-  0% {
-    transform: scale(1) rotateZ(0);
-  }
-  30% {
-    transform: scale(1.4) rotateZ(90deg);
-  }
+@keyframes hamster-pulse {
   50% {
-    transform: scale(1.2) rotateZ(180deg);
-  }
-  75% {
-    transform: scale(1.4) rotateZ(270deg);
+    scale: 0.8;
   }
   100% {
-    transform: scale(1) rotateZ(360deg);
+    scale: 1;
   }
 }
 

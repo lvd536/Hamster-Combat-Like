@@ -1,6 +1,6 @@
 .loading__screen {
   display: flex;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   font-weight: 500;
@@ -10,28 +10,32 @@
   align-items: center;
   width: 100%;
   height: 100%;
+  z-index: 1000;
   background: #2c2f35;
   gap: 90px;
-
+  &-image {
+    position: fixed;
+    top: 10vh;
+    animation: hamster-pulse 2s infinite;
+  }
   &-title {
+    position: fixed;
+    font-size: 28px;
+    font-weight: 800;
     line-height: 110%;
     letter-spacing: -0.02em;
-    color: #fff;
-  }
-  &-circle {
-    min-width: 100px;
-    min-height: 100px;
-    background: rgba(103, 103, 205, 0.68);
-    border-radius: 50%;
-    border: 4px solid rgba(51, 51, 51, 0.52);;
-    border-right: none;
-    border-bottom: none;
-    animation: circle-pulse 4s ease-out infinite;
+    background: linear-gradient(180deg, rgba(227, 160, 14, 0.85), rgba(237, 207, 36, 0.85));
+    -webkit-background-clip: text;
+    color: transparent;
   }
   &-description {
+    position: fixed;
+    font-size: 18px;
+    font-weight: 350;
+    bottom: 5vh;
     line-height: 110%;
     letter-spacing: -0.02em;
     text-wrap: nowrap;
-    color: #fff;
+    color: rgba(255, 255, 255, 0.65);
   }
 }
