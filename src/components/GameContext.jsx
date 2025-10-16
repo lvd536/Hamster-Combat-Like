@@ -130,16 +130,12 @@ export function GameProvider({ children }) {
         if (!session.lastSessionEnd) return
         const last = new Date(session.lastSessionEnd).toISOString()
         const now = new Date().toISOString()
-        console.log('now', now)
-        console.log('last', last)
         const diffSeconds = Math.round((new Date(now) - new Date(last)) / 1000)
         if (passiveEarn > 0 && balance) {
             const earned = diffSeconds * passiveEarn
             setBalance(b => b + earned)
             setBalanceEarned(be => be + earned)
             setEarnedInPassive(earned)
-            console.log(session.lastSessionEnd)
-            console.log(`Пассивный доход: +${earned}`)
         }
     }
     // ------------------- Balance Sync -------------------

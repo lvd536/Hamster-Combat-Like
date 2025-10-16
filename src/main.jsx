@@ -6,7 +6,9 @@ import App from './App.jsx'
 import { GameProvider } from "./components/GameContext.jsx"
 
 createRoot(document.getElementById('root')).render(
-  <GameProvider>
-    <App />
-  </GameProvider>,
+  <StrictMode>
+      <GameProvider>
+      <App />
+      </GameProvider>
+  </StrictMode>
 )
