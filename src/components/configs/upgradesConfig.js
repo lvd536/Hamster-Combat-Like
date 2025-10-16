@@ -1,6 +1,8 @@
-import x10 from '../../assets/x10.svg'
+import x10 from '../../assets/x10.png'
+import x20 from '../../assets/x20.png'
 import topFarmers from '../../assets/topFarmers.png'
 import memeCoins from '../../assets/memeCoins.png'
+import passiveTrader from '../../assets/passiveTraider.png'
 
 export const UPGRADES_CONFIG = {
     topFarmers: {
@@ -48,7 +50,7 @@ export const UPGRADES_CONFIG = {
     marginX20: {
         id: 'marginX20',
         name: 'Margin trading x20',
-        image: x10,
+        image: x20,
         profit: 4,
         basePrice: 15000,
         level: 1,
@@ -62,7 +64,7 @@ export const UPGRADES_CONFIG = {
     passiveTrader: {
         id: 'passiveTrader',
         name: 'Passive Trader',
-        image: x10,
+        image: passiveTrader,
         profit: 4,
         basePrice: 30000,
         level: 1,
@@ -75,4 +77,4 @@ export const UPGRADES_CONFIG = {
     }
 };
 
-export const UPGRADES_CONFIG_VERSION = 8;
+export const UPGRADES_CONFIG_VERSION = 11;

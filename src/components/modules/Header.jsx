@@ -1,7 +1,7 @@
 import logo from '../../assets/logo.png'
 
 export default function Header() {
-    const username = window.Telegram.WebApp.initDataUnsafe.user.username
+    const username = window.Telegram.WebApp.initDataUnsafe.user.username || window.Telegram.WebApp.initDataUnsafe.user.first_name
     return (
         <div className="main__heading">
             <h2 className="main__heading-logo">Shovel Coin</h2>
