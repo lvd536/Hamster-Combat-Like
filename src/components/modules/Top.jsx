@@ -1,15 +1,19 @@
 import {getUsersTop} from "../database.js"
 import {useEffect, useState} from "react"
+import LoadingScreen from "./LoadingScreen.jsx";
 
 export default function Top() {
     const [topUsers, setTopUsers] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
         async function fetchTopUsers() {
             await getUsersTop()
                 .then(res => setTopUsers(res))
+                .then(() => setIsLoading(false))
         }
         fetchTopUsers()
     }, [])
+    if (isLoading) return <LoadingScreen styles={{borderTopLeftRadius: '20px', borderTopRightRadius: '20px'}}>Loading Top...</LoadingScreen>
     return (<>
         {topUsers.map((user, index) => (
             <li key={index} className={`top__item ${index === 0 ? `top__item border-gold`

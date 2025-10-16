@@ -6,7 +6,7 @@ import {useGame} from "./components/GameContext.jsx";
 function App() {
     const {isLoading} = useGame()
 
-    if (isLoading) return <LoadingScreen />
+    if (isLoading) return <LoadingScreen>Loading...</LoadingScreen>
 
     return (
       <>
