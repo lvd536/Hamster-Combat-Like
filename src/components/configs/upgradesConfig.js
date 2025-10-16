@@ -77,4 +77,4 @@ export const UPGRADES_CONFIG = {
     }
 };
 
-export const UPGRADES_CONFIG_VERSION = 11;
+export const UPGRADES_CONFIG_VERSION = 12;
