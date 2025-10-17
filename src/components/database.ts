@@ -97,6 +97,18 @@ export type SessionType = {
     lastSessionEnd: string
 }
 
+export interface TopUser {
+    id: number;
+    username: string;
+    balance: number;
+    balanceEarned: number;
+    upgrades: UpgradesConfigType;
+    telegramID: number;
+    rank: string;
+    upgradesConfigVersion: number;
+    lastSessionEnd: string | null;
+}
+
 const supabase = createClient(import.meta.env.VITE_DB_URL, import.meta.env.VITE_DB_KEY)
 
 export const createUser = async (): Promise<object> => {
@@ -227,7 +239,7 @@ export const setUserBalance = async (newBalance: number, newBalanceEarned: numbe
     }
 }
 
-export const getUsersTop = async (): Promise<object> => {
+export const getUsersTop = async (): Promise<TopUser[]> => {
     try {
         const { data, error }: PostgrestSingleResponse<any> = await supabase
             .from('Users')

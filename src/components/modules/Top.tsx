@@ -1,9 +1,10 @@
 import {getUsersTop} from "../database.ts"
 import {useEffect, useState} from "react"
 import LoadingScreen from "./LoadingScreen.tsx";
+import type {TopUser} from '../database.ts'
 
 export default function Top() {
-    const [topUsers, setTopUsers] = useState([])
+    const [topUsers, setTopUsers] = useState<TopUser[]>([])
     const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
         async function fetchTopUsers() {
@@ -15,7 +16,7 @@ export default function Top() {
     }, [])
     if (isLoading) return <LoadingScreen styles={{borderTopLeftRadius: '20px', borderTopRightRadius: '20px'}}>Loading Top...</LoadingScreen>
     return (<>
-        {topUsers.map((user, index) => (
+        {topUsers.map((user, index: number) => (
             <li key={index} className={`top__item ${index === 0 ? `top__item border-gold`
                 : index === 1 ? `top__item border-silver`
                     : index === 2 ? `top__item border-bronze`
