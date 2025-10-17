@@ -1,6 +1,6 @@
-import {getUsersTop} from "../database.js"
+import {getUsersTop} from "../database.ts"
 import {useEffect, useState} from "react"
-import LoadingScreen from "./LoadingScreen.jsx";
+import LoadingScreen from "./LoadingScreen.tsx";
 
 export default function Top() {
     const [topUsers, setTopUsers] = useState([])

@@ -1,5 +1,5 @@
 import hamster from '../../assets/hamster.png'
-import {useGame} from "../GameContext.jsx"
+import {useGame} from "../GameContext.tsx"
 import {useState} from "react"
 
 export default function Clicker() {

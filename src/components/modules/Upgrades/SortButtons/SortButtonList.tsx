@@ -1,4 +1,4 @@
-import SortButton from "./SortButton.jsx";
+import SortButton from "./SortButton.tsx";
 import {useEffect} from "react";
 import mixitup from "mixitup";
 

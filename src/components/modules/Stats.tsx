@@ -1,8 +1,10 @@
 import coin from '../../assets/coin.png'
-import {useGame} from "../GameContext.jsx";
+import {useGame} from "../GameContext.tsx";
 
 export default function Stats() {
-    const {balance} = useGame()
+    const gameContext = useGame()
+    if (!gameContext) return
+    const { balance } = gameContext
     return (
         <div className="main__body-stats">
             <div className="stats__value">

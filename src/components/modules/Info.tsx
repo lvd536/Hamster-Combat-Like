@@ -1,5 +1,5 @@
 import coin from '../../assets/coin.png'
-import {useGame} from "../GameContext.jsx"
+import {useGame} from "../GameContext.tsx"
 
 export default function Info() {
     const {clickMultiplier, calculateRankBarPercent, calculateReachNextRankValue, balanceEarned, calculateRank} = useGame()

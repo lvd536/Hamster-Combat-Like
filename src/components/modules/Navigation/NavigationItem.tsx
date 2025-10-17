@@ -1,4 +1,4 @@
-import {useGame} from "../../GameContext.jsx";
+import {useGame} from "../../GameContext.tsx";
 
 export default function NavigationItem({name, icon}) {
     const {page, setPage} = useGame()
