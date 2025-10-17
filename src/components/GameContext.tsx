@@ -11,7 +11,7 @@ import { RANKS_CONFIG } from "./configs/ranksConfig.ts"
 import { UPGRADES_CONFIG, UPGRADES_CONFIG_VERSION} from "./configs/upgradesConfig.ts"
 import type {UpgradesConfigType, UpgradeType} from "./configs/upgradesConfig.ts"
 import type {Rank} from "./configs/ranksConfig.ts"
-import type {BalanceInfoType, UpgradesWithConfigVerType, SessionType} from "../components/database.ts"
+import type {BalanceInfoType, UpgradesWithConfigVerType, SessionType} from "./database.ts"
 import * as React from "react";
 
 interface GameProviderProps {
@@ -92,8 +92,7 @@ export function GameProvider({ children } : GameProviderProps) {
         const { upgrades: migrated, configVersion } = migrateUpgrades(userUpgrades, userConfigVersion)
         setUpgradesState(migrated)
         if (configVersion > userConfigVersion) await setUserUpgrades(migrated, configVersion, userId)
-        const multipliers = calculateMultipliers(migrated)
-        return multipliers
+        return calculateMultipliers(migrated)
     }
 
     // ------------------- RANK SYSTEM ;) -------------------
@@ -105,14 +104,12 @@ export function GameProvider({ children } : GameProviderProps) {
 
     function calculateRank(balanceEarnedValue: number) {
         const next: any = RANKS_CONFIG.find(r => r.coinsToReach > balanceEarnedValue) || RANKS_CONFIG.at(-1)
-        const current = RANKS_CONFIG.find(r => r.id === next.id - 1) || RANKS_CONFIG[0]
-        return current
+        return RANKS_CONFIG.find(r => r.id === next.id - 1) || RANKS_CONFIG[0]
     }
 
     function calculateRankBarPercent() {
         const next: any = RANKS_CONFIG.find(r => r.coinsToReach > balanceEarned) || RANKS_CONFIG.at(-1)
-        const rankReachPercent = (balanceEarned / next.coinsToReach) * 100
-        return rankReachPercent
+        return (balanceEarned / next.coinsToReach) * 100
     }
 
     function calculateReachNextRankValue() {
