@@ -1,14 +1,20 @@
 import coin from "../../../assets/coin.png";
-import {useGame} from "../../GameContext.jsx";
+import {useGame} from "../../GameContext.tsx";
 
 export default function UpgradeItems() {
-    const {upgrades, buyUpgrade} = useGame()
+    const gameContext = useGame()
+    if (!gameContext) return
+    const {upgrades, buyUpgrade} = gameContext
 
-    async function onUpgradeClick(event){
-        if (event.target.closest('.shop__item-price')) {
-            const shopItem = event.target.closest('.shop__item')
-            if (shopItem) {
-                await buyUpgrade(shopItem)
+    async function onUpgradeClick(event: React.MouseEvent): Promise<void> {
+        const target = event.target
+        if (target instanceof Element)
+        {
+            if (target.closest('.shop__item-price')) {
+                const shopItem = target.closest('.shop__item')
+                if (shopItem) {
+                    await buyUpgrade(shopItem)
+                }
             }
         }
     }

@@ -1,4 +1,4 @@
-import NavigationItem from "./NavigationItem.jsx";
+import NavigationItem from "./NavigationItem.tsx";
 
 export default function Navigation() {
     return (

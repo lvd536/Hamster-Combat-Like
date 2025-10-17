@@ -1,4 +1,20 @@
-export const RANKS_CONFIG = [
+export type RanksConfigType = [
+    { name: string; id: number; coinsToReach: number; coinsToReachUI: string },
+    { name: string; id: number; coinsToReach: number; coinsToReachUI: string },
+    { name: string; id: number; coinsToReach: number; coinsToReachUI: string },
+    { name: string; id: number; coinsToReach: number; coinsToReachUI: string },
+    { name: string; id: number; coinsToReach: number; coinsToReachUI: string },
+    { name: string; id: number; coinsToReach: number; coinsToReachUI: string },
+    { name: string; id: number; coinsToReach: number; coinsToReachUI: string },
+    { name: string; id: number; coinsToReach: number; coinsToReachUI: string },
+    { name: string; id: number; coinsToReach: number; coinsToReachUI: string },
+    { name: string; id: number; coinsToReach: number; coinsToReachUI: string },
+    { name: string; id: number; coinsToReach: number; coinsToReachUI: string }
+];
+
+export type Rank = { name: string; id: number; coinsToReach: number; coinsToReachUI: string }
+
+export const RANKS_CONFIG : RanksConfigType = [
     {
         name: 'newbie',
         id: 1,

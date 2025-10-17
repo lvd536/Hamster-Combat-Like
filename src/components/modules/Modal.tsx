@@ -1,4 +1,10 @@
-export default function Modal({active, setActive, children}) {
+interface ModalProps {
+    active: React.ComponentState;
+    setActive: () => void;
+    children: React.ReactNode;
+}
+
+export default function Modal({active, setActive, children} : ModalProps) {
     return(
         <>
             <div className={active ? 'modal active' : 'modal'}>

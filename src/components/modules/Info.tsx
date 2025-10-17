@@ -1,8 +1,10 @@
 import coin from '../../assets/coin.png'
-import {useGame} from "../GameContext.jsx"
+import {useGame} from "../GameContext.tsx"
 
 export default function Info() {
-    const {clickMultiplier, calculateRankBarPercent, calculateReachNextRankValue, balanceEarned, calculateRank} = useGame()
+    const gameContext = useGame()
+    if (!gameContext) return
+    const {clickMultiplier, calculateRankBarPercent, calculateReachNextRankValue, balanceEarned, calculateRank} = gameContext
     return (
         <ul className="main__body-info">
             <li className="info__item">
