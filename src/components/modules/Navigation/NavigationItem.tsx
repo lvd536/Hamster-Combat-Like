@@ -1,6 +1,11 @@
 import {useGame} from "../../GameContext.tsx";
 
-export default function NavigationItem({name, icon}) {
+interface NavigationItemProps {
+    name: string;
+    icon: React.ReactNode;
+}
+
+export default function NavigationItem({name, icon}: NavigationItemProps) {
     const gameContext = useGame()
     if (!gameContext) return
     const {page, setPage} = gameContext

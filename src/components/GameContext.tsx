@@ -18,8 +18,6 @@ interface GameProviderProps {
     children: ReactNode;
 }
 
-type PageState = 'mine' | 'top' | 'shop'
-
 type GameContextType = {
     isLoading: boolean;
     balance: number;
@@ -28,8 +26,8 @@ type GameContextType = {
     clickMultiplier: number;
     autoClick: number;
     passiveEarn: number;
-    page: PageState;
-    setPage: React.Dispatch<React.SetStateAction<PageState>>;
+    page: string;
+    setPage: React.Dispatch<React.SetStateAction<string>>;
     rank: Rank;
     upgrades: UpgradesConfigType | {};
     onClick: () => void;
@@ -57,7 +55,7 @@ export function GameProvider({ children } : GameProviderProps) {
     const [autoClick, setAutoClick] = useState<number>(0)
     const [passiveEarn, setPassiveEarn] = useState<number>(0)
     const [earnedInPassive, setEarnedInPassive] = useState<number>(0)
-    const [page, setPage] = useState<PageState>("mine")
+    const [page, setPage] = useState<string>("mine")
     const userId = window.Telegram.WebApp.initDataUnsafe.user.id
 
     // ------------------- INITIALIZATION -------------------

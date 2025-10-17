@@ -2,12 +2,14 @@ import hamster from '../../assets/hamster.png'
 import {useGame} from "../GameContext.tsx"
 import {useState} from "react"
 
+type ClickerElementsType = { id: number; x: number; y: number }[]
+
 export default function Clicker() {
-    const [clicks, setClicks] = useState([])
+    const [clicks, setClicks] = useState<ClickerElementsType>([])
     const gameContext = useGame()
     if (!gameContext) return
     const {onClick, clickMultiplier} = gameContext
-    function handleClick(event) {
+    function handleClick(event: React.MouseEvent<HTMLDivElement>) {
         onClick()
         const card = event.currentTarget
         const rect = card.getBoundingClientRect()
@@ -20,7 +22,7 @@ export default function Clicker() {
 
         setClicks([...clicks, { id: Date.now(), x: event.pageX, y: event.pageY }])
     }
-    const handleAnimationEnd = (id) => {
+    const handleAnimationEnd = (id: number) => {
         setClicks((prevClicks) => prevClicks.filter((click) => click.id !== id))
     }
 
