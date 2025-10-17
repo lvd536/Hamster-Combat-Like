@@ -4,7 +4,9 @@ import {useState} from "react"
 
 export default function Clicker() {
     const [clicks, setClicks] = useState([])
-    const {onClick, clickMultiplier} = useGame()
+    const gameContext = useGame()
+    if (!gameContext) return
+    const {onClick, clickMultiplier} = gameContext
     function handleClick(event) {
         onClick()
         const card = event.currentTarget

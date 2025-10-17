@@ -5,7 +5,9 @@ import {useGame} from "./components/GameContext.tsx";
 import './components/telegramEmulator.ts'
 
 function App() {
-    const {isLoading} = useGame()
+    const gameContext = useGame()
+    if (!gameContext) return
+    const {isLoading} = gameContext
     if (isLoading) return <LoadingScreen>Loading...</LoadingScreen>
 
     return (

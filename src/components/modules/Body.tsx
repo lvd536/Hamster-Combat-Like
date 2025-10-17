@@ -10,7 +10,9 @@ import {useState} from "react";
 import coin from '../../assets/coin.png'
 
 export default function Body() {
-    const {page, earnedInPassive} = useGame()
+    const gameContext = useGame()
+    if (!gameContext) return
+    const {page, earnedInPassive} = gameContext
     const [passiveEarnModel, setPassiveEarnModel] = useState(true)
 
     return (

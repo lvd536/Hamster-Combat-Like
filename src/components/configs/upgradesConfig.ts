@@ -4,89 +4,6 @@ import topFarmers from '../../assets/topFarmers.png'
 import memeCoins from '../../assets/memeCoins.png'
 import passiveTrader from '../../assets/passiveTraider.png'
 
-// export type UpgradesConfigType =  {
-//     topFarmers: {
-//         id: string,
-//         name: string,
-//         image: string,
-//         profit: number,
-//         price: number
-//         basePrice: number,
-//         level: number,
-//         maxLevel: number,
-//         increaseClickPerLevel: number,
-//         priceMultiplier: number,
-//         type: string,
-//         category: string,
-//         order: number,
-//         isBought: false
-//     },
-//     memeCoins: {
-//         id: string,
-//         name: string,
-//         image: string,
-//         profit: number,
-//         price: number
-//         basePrice: number,
-//         level: number,
-//         maxLevel: number,
-//         increaseClickPerLevel: number,
-//         priceMultiplier: number,
-//         type: string,
-//         category: string,
-//         order: number,
-//         isBought: false
-//     },
-//     marginX10: {
-//         id: string,
-//         name: string,
-//         image: string,
-//         profit: number,
-//         price: number
-//         basePrice: number,
-//         level: number,
-//         maxLevel: number,
-//         increaseClickPerLevel: number,
-//         priceMultiplier: number,
-//         type: string,
-//         category: string,
-//         order: number,
-//         isBought: false
-//     },
-//     marginX20: {
-//         id: string,
-//         name: string,
-//         image: string,
-//         profit: number,
-//         price: number
-//         basePrice: number,
-//         level: number,
-//         maxLevel: number,
-//         increaseClickPerLevel: number,
-//         priceMultiplier: number,
-//         type: string,
-//         category: string,
-//         order: number,
-//         isBought: false
-//     },
-//     passiveTrader: {
-//         id: string,
-//         name: string,
-//         image: string,
-//         profit: number,
-//         price: number
-//         basePrice: number,
-//         level: number,
-//         maxLevel: number,
-//         increaseClickPerLevel: number,
-//         priceMultiplier: number,
-//         type: string,
-//         category: string,
-//         order: number,
-//         isBought: false
-//     }
-// }
-
 export type UpgradesConfigType = {
     [key: string]: UpgradeType;
 }
@@ -191,4 +108,4 @@ export const UPGRADES_CONFIG : UpgradesConfigType = {
     }
 }
 
-export const UPGRADES_CONFIG_VERSION : number = 12
+export const UPGRADES_CONFIG_VERSION : number = 13

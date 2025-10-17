@@ -227,23 +227,23 @@ export function GameProvider({ children } : GameProviderProps) {
             const itemNameElement: Element | null = shopItem.querySelector('.shop__item-name')
             if (itemNameElement) {
                 const itemName: string = itemNameElement.textContent
-                const upgrade: UpgradeType = Object.values(upgrades).find((name: string): boolean => name === itemName)
+                const upgrade: UpgradeType = Object.values(upgrades).find((item: UpgradeType): boolean => item.name === itemName)
                 if (balance >= upgrade.price) {
                     const newBalance = balance - upgrade.price
                     const newLevel = upgrade.level + 1
                     const newPrice = calculatePrice(upgrade, newLevel)
                     const newProfit = calculateProfit(upgrade, newLevel)
 
-                    const newUpgrades: UpgradesConfigType = ({
+                    const newUpgrades: UpgradesConfigType = {
                         ...upgrades,
-                        upgrade: {
+                        [upgrade.id]: { // Обновляем элемент по его id
                             ...upgrade,
                             level: newLevel,
                             price: newPrice,
                             profit: newProfit,
                             isBought: true
                         }
-                    })
+                    };
                     const userUpgrades: UpgradesWithConfigVerType = await getUserUpgrades(userId)
                     const configVersion: number = userUpgrades.configVersion
                     await setUserUpgrades(newUpgrades, configVersion, userId)
