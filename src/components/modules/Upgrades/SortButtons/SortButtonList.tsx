@@ -1,5 +1,6 @@
 import SortButton from "./SortButton.tsx";
 import {useEffect} from "react";
+// @ts-ignore
 import mixitup from "mixitup";
 
 export default function SortButtonList() {
