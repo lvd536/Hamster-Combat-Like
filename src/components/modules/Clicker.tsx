@@ -2,12 +2,12 @@ import hamster from '../../assets/hamster.png'
 import {useGame} from "../GameContext.tsx"
 import {useState} from "react"
 
-type ClickerElementsType = { id: number; x: number; y: number }[]
+type Click = { id: number; x: number; y: number }
 
 export default function Clicker() {
-    const [clicks, setClicks] = useState<ClickerElementsType>([])
+    const [clicks, setClicks] = useState<Click[]>([])
     const gameContext = useGame()
-    if (!gameContext) return
+    if (!gameContext) return null
     const {onClick, clickMultiplier} = gameContext
     function handleClick(event: React.MouseEvent<HTMLDivElement>) {
         onClick()
@@ -20,15 +20,16 @@ export default function Clicker() {
             card.style.transform = ""
         }, 100)
 
-        setClicks([...clicks, { id: Date.now(), x: event.pageX, y: event.pageY }])
+        const newClick: Click = { id: Date.now(), x: event.pageX, y: event.pageY }
+        setClicks(prev => [...prev, newClick])
     }
     const handleAnimationEnd = (id: number) => {
-        setClicks((prevClicks) => prevClicks.filter((click) => click.id !== id))
+        setClicks((prev) => prev.filter((click) => click.id !== id))
     }
 
     return (
         <>
-        <div className="main__body-clicker" onClick={(e) => { handleClick(e) }}>
+        <div className="main__body-clicker" onClick={(e: React.MouseEvent<HTMLDivElement>) => { handleClick(e) }}>
             <img src={hamster} alt="" className="clicker__image" style={{width: '253px', height: '254px'}}/>
         </div>
         {clicks.map((click) => (
