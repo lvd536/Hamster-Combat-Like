@@ -3,16 +3,15 @@ import Stats from "./Stats.js"
 import Clicker from "./Clicker.js"
 import Top from "./Top.js"
 import Shop from "./Shop.js"
-import {useGame} from "../GameContext.tsx"
 import Navigation from "./Navigation/Navigation.tsx";
 import Modal from "./Modal.tsx";
 import {useState} from "react";
 import coin from '../../assets/coin.png'
+import {useUserStore} from "../../store/useGameStore.ts";
 
 export default function Body() {
-    const gameContext = useGame()
-    if (!gameContext) return
-    const {page, earnedInPassive} = gameContext
+    const page = useUserStore(s => s.page)
+    const earnedInPassive = useUserStore(s => s.earnedInPassive)
     const [passiveEarnModel, setPassiveEarnModel] = useState(true)
 
     return (

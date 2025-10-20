@@ -1,10 +1,8 @@
 import coin from '../../assets/coin.png'
-import {useGame} from "../GameContext.tsx";
+import {useUserStore} from "../../store/useGameStore.ts";
 
 export default function Stats() {
-    const gameContext = useGame()
-    if (!gameContext) return
-    const { balance } = gameContext
+    const balance = useUserStore(s => s.balance);
     return (
         <div className="main__body-stats">
             <div className="stats__value">

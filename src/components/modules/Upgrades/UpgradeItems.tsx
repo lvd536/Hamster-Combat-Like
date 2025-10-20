@@ -1,10 +1,9 @@
 import coin from "../../../assets/coin.png";
-import {useGame} from "../../GameContext.tsx";
+import {useUserStore} from "../../../store/useGameStore.ts";
 
 export default function UpgradeItems() {
-    const gameContext = useGame()
-    if (!gameContext) return
-    const {upgrades, buyUpgrade} = gameContext
+    const upgrades = useUserStore(s => s.upgrades);
+    const buyUpgrade = useUserStore(s => s.buyUpgrade)
 
     async function onUpgradeClick(event: React.MouseEvent): Promise<void> {
         const target = event.target

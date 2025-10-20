@@ -1,4 +1,4 @@
-import {useGame} from "../../GameContext.tsx";
+import {useUserStore} from "../../../store/useGameStore.ts";
 
 interface NavigationItemProps {
     name: string;
@@ -6,9 +6,8 @@ interface NavigationItemProps {
 }
 
 export default function NavigationItem({name, icon}: NavigationItemProps) {
-    const gameContext = useGame()
-    if (!gameContext) return
-    const {page, setPage} = gameContext
+    const page = useUserStore(s => s.page)
+    const setPage = useUserStore(s => s.setPage)
     return (
         <li key={name} className={page === name.toLowerCase() ? "navigation__item active" : "navigation__item"} onClick={() => setPage(`${name.toLowerCase()}`)}>
             <i className="material-icons navigation__item-icon">{icon}</i>

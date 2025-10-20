@@ -1,14 +1,13 @@
 import hamster from '../../assets/hamster.png'
-import {useGame} from "../GameContext.tsx"
 import {useState} from "react"
+import {useUserStore} from "../../store/useGameStore.ts";
 
 type Click = { id: number; x: number; y: number }
 
 export default function Clicker() {
     const [clicks, setClicks] = useState<Click[]>([])
-    const gameContext = useGame()
-    if (!gameContext) return null
-    const {onClick, clickMultiplier} = gameContext
+    const onClick = useUserStore(s => s.onClick)
+    const clickMultiplier = useUserStore(s => s.clickMultiplier)
     function handleClick(event: React.MouseEvent<HTMLDivElement>) {
         onClick()
         const card = event.currentTarget

@@ -1,10 +1,12 @@
 import coin from '../../assets/coin.png'
-import {useGame} from "../GameContext.tsx"
+import {useUserStore} from "../../store/useGameStore.ts";
 
 export default function Info() {
-    const gameContext = useGame()
-    if (!gameContext) return
-    const {clickMultiplier, calculateRankBarPercent, calculateReachNextRankValue, balanceEarned, calculateRank} = gameContext
+    const clickMultiplier = useUserStore(s => s.clickMultiplier)
+    const calculateRankBarPercent = useUserStore(s => s.calculateRankBarPercent)
+    const calculateReachNextRankValue = useUserStore(s => s.calculateReachNextRankValue)
+    const balanceEarned = useUserStore(s => s.balanceEarned)
+    const calculateRank = useUserStore(s => s.calculateRank)
     return (
         <ul className="main__body-info">
             <li className="info__item">
