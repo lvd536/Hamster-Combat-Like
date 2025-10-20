@@ -5,7 +5,7 @@ import {
     getUserSessionEnd,
     setUserRank,
     setUserBalance,
-    getUserBalance, setUserSessionEnd, getUser
+    getUserBalance, setUserSessionEnd
 } from "../components/database.ts"
 import { RANKS_CONFIG } from "../components/configs/ranksConfig.ts"
 import { UPGRADES_CONFIG, UPGRADES_CONFIG_VERSION} from "../components/configs/upgradesConfig.ts"
