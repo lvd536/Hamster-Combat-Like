@@ -29,9 +29,9 @@ interface IGameContext {
     upgrades: UpgradesConfigType | object;
     earnedInPassive: number;
     userId: number;
-    sessionIntervalId: ReturnType<typeof window.setInterval> | undefined;
-    autoIntervalId: ReturnType<typeof window.setInterval> | undefined;
-    syncIntervalId: ReturnType<typeof window.setInterval> | undefined;
+    sessionIntervalId: number | undefined;
+    autoIntervalId: number | undefined;
+    syncIntervalId: number | undefined;
     setPage: (page: string) => void;
     onClick: () => void;
     buyUpgrade: (shopItem: Element) => void;
@@ -49,6 +49,9 @@ interface IGameContext {
     loadUserBalance: () => Promise<BalanceInfoType>;
     updateUserRank: () => Promise<void>;
     migrateUpgrades: (userUpgrades: UpgradesConfigType, userConfigVersion: number) => Promise<{upgrades: UpgradesConfigType, configVersion: number}>;
+    initSessionIntervalId: () => void;
+    initAutoIntervalId: () => void;
+    initSyncIntervalId: () => void;
     init: () => Promise<void>;
 };
 
@@ -69,6 +72,31 @@ export const useUserStore = create<IGameContext>()(
             sessionIntervalId: undefined,
             autoIntervalId: undefined,
             syncIntervalId: undefined,
+
+            initSessionIntervalId: () => {
+                if (get().sessionIntervalId) return
+                const interval: number = setInterval(async () => {
+                    await setUserSessionEnd(new Date(), window.Telegram.WebApp.initDataUnsafe.user.id);
+                }, 3000)
+                set(s => {s.sessionIntervalId = interval})
+            },
+            initAutoIntervalId: () => {
+                if (get().autoIntervalId) return
+                const interval: number = setInterval(async () => {
+                    if (get().balance) {
+                        get().setBalance(get().balance + get().autoClick)
+                        get().setBalanceEarned(get().balanceEarned + get().autoClick)
+                    }
+                }, 1000)
+                set(s => {s.autoIntervalId = interval})
+            },
+            initSyncIntervalId: () => {
+                if (get().syncIntervalId) return
+                const interval: number = setInterval(async () => {
+                    if (get().balance) await setUserBalance(get().balance, get().balanceEarned, window.Telegram.WebApp.initDataUnsafe.user.id)
+                }, 3000)
+                set(s => {s.syncIntervalId = interval})
+            },
 
             setPage: (page: string) => {
                 set(s => { s.page = page })
@@ -214,12 +242,16 @@ export const useUserStore = create<IGameContext>()(
                 return balanceInfo
             },
             init: async () => {
+                set(s => { s.userId = window.Telegram.WebApp.initDataUnsafe.user.id })
                 set(s => { s.isLoading = true })
                 const upgrades: MultipliersType = await get().loadUpgrades()
                 const balanceInfo: BalanceInfoType = await get().loadUserBalance()
                 console.log(window.Telegram.WebApp.initDataUnsafe.user.id)
                 await get().loadPassiveIncome(upgrades.passive, balanceInfo.balance)
                 await get().updateUserRank()
+                get().initSessionIntervalId()
+                get().initAutoIntervalId()
+                get().initSyncIntervalId()
                 set(s => { s.isLoading = false })
             },
         }))

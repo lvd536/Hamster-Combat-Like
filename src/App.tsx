@@ -16,8 +16,8 @@ function App() {
             return
         }
 
-        let mounted = true
-        ;(async () => {
+        let mounted = true;
+        (async () => {
             try {
                 console.log('Calling init()')
                 await init()
