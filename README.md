@@ -1,6 +1,6 @@
 # Shovel Coin - Hamster Combat Clone
 
-![status](https://img.shields.io/badge/status-prototype-orange) ![tech](https://img.shields.io/badge/tech-HTML%20%7C%20CSS%20%7C%20React%20%7C%20Vite%20%7C%20TypeScript-blue) ![db](https://img.shields.io/badge/db-Supabase-informational)
+![status](https://img.shields.io/badge/status-prototype-orange) ![tech](https://img.shields.io/badge/tech-HTML%20%7C%20CSS%20%7C%20React%20%7C%20Vite%20%7C%20TypeScript%20%7C%20Zustand-blue) ![db](https://img.shields.io/badge/db-Supabase-informational)
 > Данный проект просто является практикой и/или прототипом основной задумки приложения. Пока что я планирую развивать это приложение дальше и добавлять в него что-то интересное.
 ## Кратко
 
@@ -36,6 +36,7 @@
 * CSS3 (SASS)
 * React
 * TypeScript
+* Zustand
 * Telegram Web Apps SDK
 * Supabase
 
