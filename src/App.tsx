@@ -1,7 +1,7 @@
 import Header from "./components/modules/Header.tsx"
 import Body from "./components/modules/Body.tsx"
 import LoadingScreen from "./components/modules/LoadingScreen.tsx"
-import './components/telegramEmulator.ts'
+// import './components/telegramEmulator.ts'
 import {useUserStore} from "./store/useGameStore.ts";
 import {useEffect} from "react";
 
@@ -10,12 +10,6 @@ function App() {
     const init = useUserStore(s => s.init)
 
     useEffect(() => {
-        console.log('App useEffect — init identity:', typeof init)
-        if (typeof init !== 'function') {
-            console.error('init is not a function', init)
-            return
-        }
-
         let mounted = true;
         (async () => {
             try {
